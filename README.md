@@ -2,7 +2,7 @@
 A UF group project that attempts to create a limited Legend of Zelda clone.
 
 ## Tools we will be using
-[Slack](https://slack.com/?nojsmode=1)
+[Slack](legendoftheswamp.slack.com)
   * This is so we can communicate. Group texting is pretty ghetto and someone's phone could be wiped.
 
 [SFML](http://www.sfml-dev.org/documentation/2.3.2/)
