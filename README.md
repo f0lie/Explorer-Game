@@ -75,12 +75,12 @@ Effective C++ and Modern Effective C++
 
 * The random Danish dude writes some guidelines on writing good C++. It actually explains why you do certain things. Use this as a jumping point to research more points about C++.
 
-#### Learn SFML and look at other games.
+##### Learn SFML and look at other games.
 This is honestly not the most important thing. SFML is stands for Simple Fast Multimedia Library. It is a way to interact with your keyboard, audio, and display things. While signifact, it WILL NOT guide the design of our game.
 
 There are other examples of open source Legend of Zelda games. You should take a peek at them and see what they do.
 
-#### Use reddit
+##### Use reddit
 [/r/gamedev](www.reddit.com/r/gamedev)
 
 [/r/learnprogramming](www.reddit.com/r/learnprogramming)
