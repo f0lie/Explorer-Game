@@ -55,6 +55,8 @@ Most of the time its going to be something like this:
 It's a presentation at CppCon (a conference where the ~~nerdest~~ coolest people go to). The guy walks through using SFML to develop a simple game.
 
 ##### ~~Sacrifice your newborn~~ Read modern C++11/14 standards
+If you want an example of modern C++ look at my repo magic_sqaure.
+
 [C++ FAQ](https://isocpp.org/wiki/faq)
 
 * This is a wonderful FAQ that touches on a lot of topics about C++.
