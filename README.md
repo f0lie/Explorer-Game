@@ -85,6 +85,8 @@ This is honestly not the most important thing. SFML is stands for Simple Fast Mu
 
 There are other examples of open source Legend of Zelda games. You should take a peek at them and see what they do.
 
+[Tutorial on what we are trying to do](https://github.com/SFML/SFML/wiki/Tutorial:-Basic-Game-Engine)
+
 ##### Use reddit
 [/r/gamedev](www.reddit.com/r/gamedev)
 
