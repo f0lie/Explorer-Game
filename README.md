@@ -17,6 +17,9 @@ Any IDE
 [Cmake](https://en.wikipedia.org/wiki/CMake)
   * Build generator system. You run it and it makes the correct build files for your system. It basically makes compiling not painful/impossible.
 
+[Google Test](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md)
+ * It is extremely important to have tests to verify the project.
+
 ## Expectations
 We should meet very often. Code with a very collabration based project and we need to communicate in person to effectively work.
 
