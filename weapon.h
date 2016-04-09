@@ -8,28 +8,28 @@ class Weapon
         Weapon();
 
         float Get_range() {
-            return _range;
+            return range;
         }
         void Set_range(float val) {
-            _range = val;
+            range = val;
         }
         float Get_angleDegrees() {
-            return _angleDegrees;
+            return angleDegrees;
         }
         void Set_angleDegrees(float val) {
-            _angleDegrees = val;
+            angleDegrees = val;
         }
         float Get_distanceInFront() {
-            return _distanceInFront;
+            return distanceInFront;
         }
         void Set_distanceInFront(float val) {
-            _distanceInFront = val;
+            distanceInFront = val;
         }
 
     private:
-        float _range;
-        float _angleDegrees;
-        float _distanceInFront;
+        float range;
+        float angleDegrees;
+        float distanceInFront;
 };
 
 #endif // WEAPON_H
