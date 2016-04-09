@@ -1,8 +1,8 @@
 #include "weapon.h"
 
-Weapon::Weapon(float range, float angleDegrees, float distanceInFront)
+Weapon::Weapon(float r, float a, float dist)
 {
-    _range = range;
-    _angleDegrees=angleDegrees;
-    _distanceInFront=distanceInFront;
+    range = r;
+    angleDegrees=a;
+    distanceInFront=dist;
 }
