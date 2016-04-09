@@ -10,28 +10,28 @@ class Player : public sprite
         Player();
 
         float Get_direction() {
-            return _direction;
+            return direction;
         }
         void Set_direction(float val) {
-            _direction = val;
+            direction = val;
         }
         int Get_floor() {
-            return _floor;
+            return floor;
         }
         void Set_floor(int val) {
-            _floor = val;
+            floor = val;
         }
         int Get_score() {
-            return _score;
+            return score;
         }
         void Set_score(int val) {
-            _score = val;
+            score = val;
         }
 
     private:
-        float _direction;
-        int _floor;
-        int _score;
+        float direction;
+        int floor;
+        int score;
         //TODO Still need private member to represent a list of items (inventory).
 };
 
