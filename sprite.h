@@ -27,9 +27,9 @@ class sprite
         }
 
     private:
-        boolean _isSolid;
-        int _xPosition;
-        int _yPosition;
+        boolean isSolid;
+        int xPosition;
+        int yPosition;
 };
 
 #endif // SPRITE_H
