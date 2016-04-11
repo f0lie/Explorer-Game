@@ -1,0 +1,11 @@
+//
+// Created by alex on 4/11/16.
+//
+
+#ifndef LEGEND_OF_SWAMP_CONFIG_H
+#define LEGEND_OF_SWAMP_CONFIG_H
+
+#define legend_of_the_swamp_VERSION_MAJOR @legend_of_the_swamp_VERSION_MAJOR@
+#define legend_of_the_swamp_VERSION_MINOR @legend_of_the_swamp_VERSION_MINOR@
+
+#endif //LEGEND_OF_SWAMP_CONFIG_H

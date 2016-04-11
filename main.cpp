@@ -8,10 +8,6 @@ int main()
     sf::RenderWindow window(sf::VideoMode(600, 400), "SFML works!");
     sf::CircleShape shape(60.f);
     shape.setFillColor(sf::Color::Green);
-	sf::Music music;
-	if (!music.openFromFile("Fade.ogg"))
-		return -1; // error
-	music.play();
 	Player *player = new Player(true, 1, 1, 0.0);//solid, starting at (1,1) facing right.
     while (window.isOpen()) 
     {
