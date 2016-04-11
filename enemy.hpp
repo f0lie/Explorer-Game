@@ -1,13 +1,26 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 #include <math.h>
-#include <sprite.h>
+#include <iostream>
+#include "sprite.hpp"
+#include "player.hpp"
 #define PI 3.14159265
 
-class Enemy : public sprite
+class Enemy : public Sprite
 {
+	protected:
+        float direction;
+        float damageOnContact;
+        char *aiMoveSequence;
+        int moveIndex;
+        Player *toChase;
     public:
-        Enemy();
+        Enemy(bool isSolid, int damage, Player *player, int xPosition, int yPosition, double dir)
+        : Sprite(isSolid, xPosition, yPosition, dir)    // Call the superclass constructor in the subclass' initialization list.
+        {
+			damageOnContact = damage;
+			toChase = player;
+        }
 
         float Get_direction() {
             return direction;
@@ -27,33 +40,14 @@ class Enemy : public sprite
         void Set_moveSequence(char *sequence) {
             aiMoveSequence = sequence;
         }
-        void Set_player(Player player){
+        void Set_player(Player *player){
         	toChase = player;
-        }
-        void stepForward(){
-        	if(direction==45)
-        		direction+=(1.0-((double)rand(1))*2.0);
-        	if(direction==135)
-        		direction+=(1.0-((double)rand(1))*2.0);
-        	if(direction==225)
-        		direction+=(1.0-((double)rand(1))*2.0);
-        	if(direction==315)
-        		direction+=(1.0-((double)rand(1))*2.0); //Just some stupid tiebreaker code for 45 degree angle chases.
-        	direction%=360;
-        	if(direction<=45 || direction > 315)
-        		xPosition++;
-        	else if(direction<=135)
-        		yPosition--;
-        	else if(direction<=225)
-        		xPosition--;
-        	else if(direction<=315)
-        		yPosition++;
         }
         double toPlayer(){//degrees
         //if y is negative and x isn't +270, both neg add 180, y pos x neg add 90.
-        double x= toChase.xPosition - xPosition;
-        double y= yPosition - toChase.yPosition;
-        double r = (x*x + y*y)^(1.0/2.0);
+        double x= toChase->getX() - xPosition;
+        double y= yPosition - toChase->getY();
+        double r = sqrt(x*x + y*y);
    	double theta = acos(x/r)*180.0/PI;
         if(y>=0 && x<0) //Uh yeah someone check my work on this logic LOL
         	theta+=90.0;
@@ -62,6 +56,9 @@ class Enemy : public sprite
         if(y<0 && x>=0)
         	theta+=270.0;
         }
+        void attack(){
+		//TODO
+		}
         void move(){
         char curr = aiMoveSequence[moveIndex];
         switch(curr){
@@ -96,20 +93,19 @@ class Enemy : public sprite
           xPosition+=1;
           break;
 	        default:
-	        cout<<"lol unidentified move in the array."
+	        std::cout<<"lol unidentified move in the array.";
+	      //TODO check if any occupying sprites are solid too!
+	      if(false ){//if there is a SOLID sprite in the same square.
+			stepBackward();
+			}
         }
         moveIndex++;
         if(moveIndex>=(sizeof(aiMoveSequence)/sizeof(aiMoveSequence[0]))){//If we're now outside the range of good values.
         moveIndex =0;
         }
         }
-
-    private:
-        float direction;
-        float damageOnContact;
-        char *aiMoveSequence;
-        int moveIndex;
-        Player toChase;
+	}
 };
+
 
 #endif // PLAYER_H
