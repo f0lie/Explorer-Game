@@ -1,6 +1,7 @@
 #Change this if you need to target a specific CMake version
 cmake_minimum_required(VERSION 3.1)
 
+set(CMAKE_CXX_STANDARD 11)
 
 # Enable debug symbols by default
 # must be done before project() statement
@@ -22,7 +23,7 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 # Define sources and executable
 set(EXECUTABLE_NAME "legend_of_the_swamp")
-add_executable(${EXECUTABLE_NAME} config.h.in main.cpp)
+add_executable(${EXECUTABLE_NAME} config.h.in main.cpp GameState.cpp GameState.h Game.cpp Game.h)
 
 
 # Detect and add SFML
