@@ -15,6 +15,31 @@ Game::Game(): m_window({winWidth, winHeight}, "Legend of the Swamp")
     m_window.setFramerateLimit(60);
 }
 
+void Game::run() {
+    sf::Clock clock;
+
+    while(m_window.isOpen())
+    {
+        sf::Time elapsed{clock.restart()};
+        float dt{elapsed.asSeconds()};
+
+        if(peekState())
+        {
+            continue;
+        }
+
+        peekState()->handleInput();
+        peekState()->update(dt);
+
+        m_window.clear(sf::Color::Black);
+
+        peekState()->draw(dt);
+
+        m_window.display();
+    }
+}
+
+
 void Game::pushState(std::unique_ptr<GameState> state)
 {
     // http://stackoverflow.com/questions/8114276/how-do-i-pass-a-unique-ptr-argument-to-a-constructor-or-a-function

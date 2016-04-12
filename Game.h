@@ -25,6 +25,8 @@ public:
     void popState();
     void changeState(std::unique_ptr<GameState> state);
     GameState* peekState();
+
+    void run();
 };
 
 
