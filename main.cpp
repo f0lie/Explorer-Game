@@ -9,7 +9,7 @@ int main()
     sf::CircleShape shape(60.f);
     shape.setFillColor(sf::Color::Green);
 	Player *player = new Player(true, 1, 1, 0.0);//solid, starting at (1,1) facing right.
-    while (window.isOpen()) 
+    // while (window.isOpen())
     {
 		//BEGIN MAIN GAME LOOP
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
