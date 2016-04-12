@@ -6,22 +6,17 @@
 #include "Game.h"
 #include "GameState.h"
 
-constexpr unsigned int winWidth{800}, winHeight{600};
-
 // Mainly following this guide
 // https://www.binpress.com/tutorial/creating-a-city-building-game-with-sfml/137
 int main()
 {
     std::cout << "Hello World" << std::endl;
 
-    Game game;
+    Game game{};
 
     sf::Clock clock;
 
-    sf::RenderWindow window{{winWidth, winHeight}, "Legend"};
-    window.setFramerateLimit(60);
-
-    while(window.isOpen())
+    while(game.m_window.isOpen())
     {
         sf::Time elapsed{clock.restart()};
         float dt{elapsed.asSeconds()};
@@ -34,11 +29,11 @@ int main()
         game.peekState()->handleInput();
         game.peekState()->update(dt);
 
-        window.clear(sf::Color::Black);
+        game.m_window.clear(sf::Color::Black);
 
         game.peekState()->draw(dt);
 
-        window.display();
+        game.m_window.display();
     }
 
     return 0;

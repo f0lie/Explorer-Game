@@ -8,6 +8,13 @@
 #include "Game.h"
 #include "GameState.h"
 
+constexpr unsigned int winWidth{800}, winHeight{600};
+
+Game::Game(): m_window({winWidth, winHeight}, "Legend of the Swamp")
+{
+    m_window.setFramerateLimit(60);
+}
+
 void Game::pushState(std::unique_ptr<GameState> state)
 {
     // http://stackoverflow.com/questions/8114276/how-do-i-pass-a-unique-ptr-argument-to-a-constructor-or-a-function

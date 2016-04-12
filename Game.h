@@ -12,9 +12,14 @@
 
 class GameState;
 
-class Game {
+class Game
+{
 public:
+    Game();
+
     std::stack<std::unique_ptr<GameState>> m_states;
+
+    sf::RenderWindow m_window;
 
     void pushState(std::unique_ptr<GameState> state);
     void popState();

@@ -1,0 +1,15 @@
+//
+// Created by alex on 4/12/16.
+//
+
+#ifndef LEGEND_OF_THE_SWAMP_GAMESTATEEDITOR_H
+#define LEGEND_OF_THE_SWAMP_GAMESTATEEDITOR_H
+
+
+class GameStateEditor
+{
+
+};
+
+
+#endif //LEGEND_OF_THE_SWAMP_GAMESTATEEDITOR_H
