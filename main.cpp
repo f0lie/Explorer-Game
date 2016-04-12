@@ -8,6 +8,8 @@
 
 constexpr unsigned int winWidth{800}, winHeight{600};
 
+// Mainly following this guide
+// https://www.binpress.com/tutorial/creating-a-city-building-game-with-sfml/137
 int main()
 {
     std::cout << "Hello World" << std::endl;
