@@ -1,7 +1,7 @@
 #include "GameStateStart.h"
 #include "GameStateEditor.h"
 
-GameStateStart::GameStateStart(Game* game) : GameState(game),
+GameStateStart::GameStateStart(Game *game) : GameState(game),
                                              m_view()
 {
     sf::Vector2f pos{m_game->m_window.getSize()};
@@ -26,9 +26,9 @@ void GameStateStart::handleInput()
 {
     sf::Event event;
 
-    while(m_game->m_window.pollEvent(event))
+    while (m_game->m_window.pollEvent(event))
     {
-        switch(event.type)
+        switch (event.type)
         {
             case sf::Event::Closed:
             {
@@ -47,7 +47,7 @@ void GameStateStart::handleInput()
             }
             case sf::Event::KeyPressed:
             {
-                if(event.key.code == sf::Keyboard::Escape)
+                if (event.key.code == sf::Keyboard::Escape)
                 {
                     m_game->m_window.close();
                 }

@@ -5,17 +5,17 @@
 #include "Tile.h"
 
 Tile::Tile(unsigned int tileSize, unsigned int height, sf::Texture &texture,
-           const std::vector<Animation> &animations,
+           const std::vector<Animation>& animations,
            TileType tileType, unsigned int cost, unsigned int maxPopPerLevel,
            unsigned int maxLevels) : m_tileType(tileType),
                                      m_tileVariant(0),
-                                     m_regions({0}),
+                                     m_regions{0},
                                      m_cost(cost),
-                                     m_population(0),
+                                     m_population(0.0f),
                                      m_maxPopPerLevel(maxPopPerLevel),
-                                     m_maxLevels(0),
-                                     m_production(0),
-                                     m_storedGoods(0)
+                                     m_maxLevels(maxLevels),
+                                     m_production(0.0f),
+                                     m_storedGoods(0.0f)
 {
     m_sprite.setOrigin(sf::Vector2f(0.0f, tileSize * (height - 1)));
     m_sprite.setTexture(texture);
@@ -61,7 +61,7 @@ void Tile::update()
     }
 }
 
-std::string tileTypeToStr(TileType type) const noexcept
+std::string tileTypeToStr(TileType type)
 {
     switch (type)
     {

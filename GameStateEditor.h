@@ -8,11 +8,14 @@
 class GameStateEditor : public GameState
 {
 public:
-    GameStateEditor(Game* game);
+    GameStateEditor(Game *game);
 
     virtual void draw(const float dt) override;
+
     virtual void update(const float dt) override;
+
     virtual void handleInput() override;
+
 private:
     sf::View m_gameView;
     sf::View m_guiView;

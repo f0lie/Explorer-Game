@@ -8,7 +8,7 @@ void TextureManager::loadTexture(const std::string &name, const std::string &fil
     m_textures[name] = std::move(tex);
 }
 
-sf::Texture& TextureManager::getRef(const std::string &texture)
+sf::Texture &TextureManager::getRef(const std::string &texture)
 {
     return *m_textures.at(texture);
 }

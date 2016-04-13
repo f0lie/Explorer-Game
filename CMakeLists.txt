@@ -21,9 +21,13 @@ configure_file(
 )
 include_directories("${PROJECT_BINARY_DIR}")
 
+
 # Define sources and executable
 set(EXECUTABLE_NAME "legend_of_the_swamp")
-add_executable(${EXECUTABLE_NAME} config.h.in main.cpp GameState.h Game.cpp Game.h GameStateStart.cpp GameStateStart.h GameStateEditor.cpp GameStateEditor.h TextureManager.cpp TextureManager.h AnimationHandler.cpp AnimationHandler.h Tile.cpp Tile.h)
+file(GLOB LEGEND_OF_THE_SWAMP_SRC
+        "*.h"
+        "*.cpp")
+add_executable(${EXECUTABLE_NAME} ${LEGEND_OF_THE_SWAMP_SRC})
 
 
 # Detect and add SFML
@@ -40,6 +44,10 @@ endif()
 # Install target
 install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
 
+set(ASSETS_DIR "media/")
+# Install game assets
+install(DIRECTORY ${ASSETS_DIR}
+                DESTINATION ${ASSETS_DIR})
 
 # CPack packaging
 include(InstallRequiredSystemLibraries)

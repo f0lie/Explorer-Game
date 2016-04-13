@@ -3,25 +3,28 @@
 
 constexpr unsigned int winWidth{800}, winHeight{600};
 
-Game::Game(): m_window({winWidth, winHeight}, "Legend of the Swamp"),
-              m_texmgr(),
-              m_background()
+Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
+               m_texmgr(),
+               m_background()
 {
+    loadTextures();
+    loadTiles();
+
     m_window.setFramerateLimit(60);
 
-    loadTextures();
     m_background.setTexture(m_texmgr.getRef("background"));
 }
 
-void Game::run() {
+void Game::run()
+{
     sf::Clock clock;
 
-    while(m_window.isOpen())
+    while (m_window.isOpen())
     {
         sf::Time elapsed{clock.restart()};
         float dt{elapsed.asSeconds()};
 
-        if(peekState() == nullptr)
+        if (peekState() == nullptr)
         {
             continue;
         }
@@ -51,7 +54,7 @@ void Game::popState()
 
 void Game::changeState(std::unique_ptr<GameState> state)
 {
-    if(!m_states.empty())
+    if (!m_states.empty())
     {
         popState();
     }
@@ -59,9 +62,9 @@ void Game::changeState(std::unique_ptr<GameState> state)
     pushState(std::move(state));
 }
 
-GameState* Game::peekState()
+GameState *Game::peekState()
 {
-    if(m_states.empty())
+    if (m_states.empty())
     {
         return nullptr;
     }
@@ -69,7 +72,55 @@ GameState* Game::peekState()
     return m_states.top().get();
 }
 
+void Game::loadTiles()
+{
+    Animation staticAnim(0, 0, 1.0f);
+    m_tileAtlas["grass"] =
+            Tile(tileSize, 1, m_texmgr.getRef("grass"),
+                 { staticAnim },
+                 TileType::GRASS, 50, 0, 1);
+    m_tileAtlas["forest"] =
+            Tile(tileSize, 1, m_texmgr.getRef("forest"),
+                 { staticAnim },
+                 TileType::FOREST, 100, 0, 1);
+    m_tileAtlas["water"] =
+            Tile(tileSize, 1, m_texmgr.getRef("water"),
+                 { Animation(0, 3, 0.5f),
+                   Animation(0, 3, 0.5f),
+                   Animation(0, 3, 0.5f) },
+                 TileType::WATER, 0, 0, 1);
+    m_tileAtlas["residential"] =
+            Tile(tileSize, 2, m_texmgr.getRef("residential"),
+                 { staticAnim, staticAnim, staticAnim,
+                   staticAnim, staticAnim, staticAnim },
+                 TileType::RESIDENTIAL, 300, 50, 6);
+    m_tileAtlas["commercial"] =
+            Tile(tileSize, 2, m_texmgr.getRef("commercial"),
+                 { staticAnim, staticAnim, staticAnim, staticAnim},
+                 TileType::COMMERCIAL, 300, 50, 4);
+    m_tileAtlas["industrial"] =
+            Tile(tileSize, 2, m_texmgr.getRef("industrial"),
+                 { staticAnim, staticAnim, staticAnim,
+                   staticAnim },
+                 TileType::INDUSTRIAL, 300, 50, 4);
+    m_tileAtlas["road"] =
+            Tile(tileSize, 1, m_texmgr.getRef("road"),
+                 { staticAnim, staticAnim, staticAnim,
+                   staticAnim, staticAnim, staticAnim,
+                   staticAnim, staticAnim, staticAnim,
+                   staticAnim, staticAnim },
+                 TileType::ROAD, 100, 0, 1);
+}
+
 void Game::loadTextures()
 {
-    m_texmgr.loadTexture("background", "media/background.png");
+    m_texmgr.loadTexture("grass",         "media/grass.png");
+    m_texmgr.loadTexture("forest",        "media/forest.png");
+    m_texmgr.loadTexture("water",         "media/water.png");
+    m_texmgr.loadTexture("residential",   "media/residential.png");
+    m_texmgr.loadTexture("commercial",    "media/commercial.png");
+    m_texmgr.loadTexture("industrial",    "media/industrial.png");
+    m_texmgr.loadTexture("road",          "media/road.png");
+
+    m_texmgr.loadTexture("background",    "media/background.png");
 }

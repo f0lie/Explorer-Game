@@ -5,8 +5,10 @@
 
 #include <stack>
 #include <memory>
+#include <map>
 
 #include "TextureManager.h"
+#include "Tile.h"
 
 class GameState;
 
@@ -20,10 +22,14 @@ public:
      * Stacking the states allow swap states easily like between Pause and Start.
      */
     std::stack<std::unique_ptr<GameState>> m_states;
+
     void pushState(std::unique_ptr<GameState> state);
+
     void popState();
+
     void changeState(std::unique_ptr<GameState> state);
-    GameState* peekState();
+
+    GameState *peekState();
 
     void run();
 
@@ -31,8 +37,14 @@ public:
     sf::RenderWindow m_window;
     sf::Sprite m_background;
     TextureManager m_texmgr;
+
+    const static int tileSize{8};
+
+    std::map<std::string, Tile> m_tileAtlas;
 private:
     void loadTextures();
+
+    void loadTiles();
 };
 
 

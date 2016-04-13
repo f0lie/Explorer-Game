@@ -6,7 +6,7 @@
 
 void AnimationHandler::update(const float dt)
 {
-    if(m_currentAnim >= m_animations.size() || m_currentAnim < 0)
+    if (m_currentAnim >= m_animations.size() || m_currentAnim < 0)
     {
         return;
     }
@@ -17,7 +17,7 @@ void AnimationHandler::update(const float dt)
      * Check if the animation has progressed to a new frame
      * and if so change to the next frame.
      */
-    if(int((m_t + dt) / duration) > int(m_t / duration))
+    if (int((m_t + dt) / duration) > int(m_t / duration))
     {
         // Calculate the frame number
         int frame = int((m_t + dt) / duration);
@@ -39,7 +39,7 @@ void AnimationHandler::update(const float dt)
     m_t += dt;
 
     // Adjust for looping
-    if(m_t > duration * m_animations[m_currentAnim].getLength())
+    if (m_t > duration * m_animations[m_currentAnim].getLength())
     {
         m_t = 0.0f;
     }
@@ -56,7 +56,7 @@ void AnimationHandler::changeAnim(unsigned int animID)
      * Do not change the animation if the animation is currently active or
      * the new animation doesn't exist
      */
-    if(m_currentAnim == animID || animID >= m_animations.size() || animID < 0)
+    if (m_currentAnim == animID || animID >= m_animations.size() || animID < 0)
     {
         return;
     }

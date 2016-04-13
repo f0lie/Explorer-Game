@@ -8,13 +8,16 @@ class GameState
 {
 public:
     virtual void draw(const float dt) = 0;
+
     virtual void update(const float dt) = 0;
+
     virtual void handleInput() = 0;
 
 protected:
-    GameState(Game* game) : m_game(game) {}
+    GameState(Game *game) : m_game(game)
+    { }
 
-    Game* m_game;
+    Game *m_game;
 };
 
 

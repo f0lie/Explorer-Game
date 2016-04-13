@@ -9,13 +9,17 @@
 class GameStateStart : public GameState
 {
 public:
-    GameStateStart(Game* game);
+    GameStateStart(Game *game);
 
     virtual void draw(const float dt) override;
+
     virtual void update(const float dt) override;
+
     virtual void handleInput() override;
+
 private:
     void loadGame();
+
     sf::View m_view;
 };
 
