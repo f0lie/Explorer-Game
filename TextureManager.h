@@ -1,7 +1,3 @@
-//
-// Created by alex on 4/13/16.
-//
-
 #ifndef LEGEND_OF_THE_SWAMP_TEXTUREMANAGER_H
 #define LEGEND_OF_THE_SWAMP_TEXTUREMANAGER_H
 

@@ -1,7 +1,3 @@
-//
-// Created by alex on 4/12/16.
-//
-
 #include "Game.h"
 #include "GameState.h"
 
