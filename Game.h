@@ -15,18 +15,22 @@ class Game
 public:
     Game();
 
+    /*
+     * m_states is a stack that contains all of the states to be loaded.
+     * Stacking the states allow swap states easily like between Pause and Start.
+     */
     std::stack<std::unique_ptr<GameState>> m_states;
-
-    sf::RenderWindow m_window;
-    TextureManager m_texmgr;
-    sf::Sprite m_background;
-
     void pushState(std::unique_ptr<GameState> state);
     void popState();
     void changeState(std::unique_ptr<GameState> state);
     GameState* peekState();
 
     void run();
+
+    // Public members for now
+    sf::RenderWindow m_window;
+    sf::Sprite m_background;
+    TextureManager m_texmgr;
 private:
     void loadTextures();
 };

@@ -3,7 +3,9 @@
 
 constexpr unsigned int winWidth{800}, winHeight{600};
 
-Game::Game(): m_window({winWidth, winHeight}, "Legend of the Swamp")
+Game::Game(): m_window({winWidth, winHeight}, "Legend of the Swamp"),
+              m_texmgr(),
+              m_background()
 {
     m_window.setFramerateLimit(60);
 

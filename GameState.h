@@ -3,6 +3,7 @@
 
 #include "Game.h"
 
+// ABC for States
 class GameState
 {
 public:
@@ -12,6 +13,7 @@ public:
 
 protected:
     GameState(Game* game) : m_game(game) {}
+
     Game* m_game;
 };
 

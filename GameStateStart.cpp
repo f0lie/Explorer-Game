@@ -1,7 +1,8 @@
 #include "GameStateStart.h"
 #include "GameStateEditor.h"
 
-GameStateStart::GameStateStart(Game* game) : GameState(game)
+GameStateStart::GameStateStart(Game* game) : GameState(game),
+                                             m_view()
 {
     sf::Vector2f pos{m_game->m_window.getSize()};
     m_view.setSize(pos);
@@ -12,7 +13,6 @@ GameStateStart::GameStateStart(Game* game) : GameState(game)
 void GameStateStart::draw(const float dt)
 {
     m_game->m_window.setView(m_view);
-
     m_game->m_window.clear(sf::Color::Black);
     m_game->m_window.draw(m_game->m_background);
 }
@@ -26,7 +26,8 @@ void GameStateStart::handleInput()
 {
     sf::Event event;
 
-    while(m_game->m_window.pollEvent(event)) {
+    while(m_game->m_window.pollEvent(event))
+    {
         switch(event.type)
         {
             case sf::Event::Closed:
@@ -36,6 +37,7 @@ void GameStateStart::handleInput()
             }
             case sf::Event::Resized:
             {
+                // Change the view so it matches the resized window
                 m_view.setSize(event.size.width, event.size.height);
                 m_game->m_background.setPosition(m_game->m_window.mapPixelToCoords(sf::Vector2i(0, 0)));
                 m_game->m_background.setScale(

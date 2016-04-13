@@ -5,18 +5,18 @@
 
 #include "GameState.h"
 
+// First state to load
 class GameStateStart : public GameState
 {
 public:
-    virtual void draw(const float dt) override;
+    GameStateStart(Game* game);
 
+    virtual void draw(const float dt) override;
     virtual void update(const float dt) override;
     virtual void handleInput() override;
-    GameStateStart(Game* game);
 private:
-    sf::View m_view;
-
     void loadGame();
+    sf::View m_view;
 };
 
 
