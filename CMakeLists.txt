@@ -23,7 +23,7 @@ include_directories("${PROJECT_BINARY_DIR}")
 
 # Define sources and executable
 set(EXECUTABLE_NAME "legend_of_the_swamp")
-add_executable(${EXECUTABLE_NAME} config.h.in main.cpp GameState.h Game.cpp Game.h GameStateStart.cpp GameStateStart.h GameStateEditor.cpp GameStateEditor.h)
+add_executable(${EXECUTABLE_NAME} config.h.in main.cpp GameState.h Game.cpp Game.h GameStateStart.cpp GameStateStart.h GameStateEditor.cpp GameStateEditor.h TextureManager.cpp TextureManager.h)
 
 
 # Detect and add SFML

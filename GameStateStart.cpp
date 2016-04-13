@@ -1,5 +1,3 @@
-#include <SFML/Graphics.hpp>
-
 #include "GameStateStart.h"
 #include "GameStateEditor.h"
 
@@ -16,7 +14,7 @@ void GameStateStart::draw(const float dt)
     m_game->m_window.setView(m_view);
 
     m_game->m_window.clear(sf::Color::Black);
-    m_game->m_window.draw(m_game->background);
+    m_game->m_window.draw(m_game->m_background);
 }
 
 void GameStateStart::update(const float dt)
@@ -39,10 +37,10 @@ void GameStateStart::handleInput()
             case sf::Event::Resized:
             {
                 m_view.setSize(event.size.width, event.size.height);
-                m_game->background.setPosition(m_game->m_window.mapPixelToCoords(sf::Vector2i(0, 0)));
-                m_game->background.setScale(
-                        float(event.size.width) / float(m_game->background.getTexture()->getSize().x),
-                        float(event.size.height) / float(m_game->background.getTexture()->getSize().y));
+                m_game->m_background.setPosition(m_game->m_window.mapPixelToCoords(sf::Vector2i(0, 0)));
+                m_game->m_background.setScale(
+                        float(event.size.width) / float(m_game->m_background.getTexture()->getSize().x),
+                        float(event.size.height) / float(m_game->m_background.getTexture()->getSize().y));
                 break;
             }
             case sf::Event::KeyPressed:

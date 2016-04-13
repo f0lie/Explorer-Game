@@ -5,10 +5,12 @@
 #ifndef LEGEND_OF_THE_SWAMP_GAME_H
 #define LEGEND_OF_THE_SWAMP_GAME_H
 
+#include <SFML/Graphics.hpp>
+
 #include <stack>
 #include <memory>
 
-#include <SFML/Graphics.hpp>
+#include "TextureManager.h"
 
 class GameState;
 
@@ -20,6 +22,8 @@ public:
     std::stack<std::unique_ptr<GameState>> m_states;
 
     sf::RenderWindow m_window;
+    TextureManager m_texmgr;
+    sf::Sprite m_background;
 
     void pushState(std::unique_ptr<GameState> state);
     void popState();
@@ -27,6 +31,8 @@ public:
     GameState* peekState();
 
     void run();
+private:
+    void loadTextures();
 };
 
 

@@ -2,9 +2,6 @@
 // Created by alex on 4/12/16.
 //
 
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
-
 #include "Game.h"
 #include "GameState.h"
 
@@ -13,6 +10,9 @@ constexpr unsigned int winWidth{800}, winHeight{600};
 Game::Game(): m_window({winWidth, winHeight}, "Legend of the Swamp")
 {
     m_window.setFramerateLimit(60);
+
+    loadTextures();
+    m_background.setTexture(m_texmgr.getRef("background"));
 }
 
 void Game::run() {
@@ -23,7 +23,7 @@ void Game::run() {
         sf::Time elapsed{clock.restart()};
         float dt{elapsed.asSeconds()};
 
-        if(peekState())
+        if(peekState() == nullptr)
         {
             continue;
         }
@@ -69,4 +69,9 @@ GameState* Game::peekState()
     }
 
     return m_states.top().get();
+}
+
+void Game::loadTextures()
+{
+    m_texmgr.loadTexture("background", "media/background.png");
 }
