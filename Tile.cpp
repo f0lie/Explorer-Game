@@ -1,7 +1,3 @@
-//
-// Created by alex on 4/13/16.
-//
-
 #include "Tile.h"
 
 Tile::Tile(unsigned int tileSize, unsigned int height, sf::Texture &texture,

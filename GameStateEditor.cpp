@@ -56,7 +56,9 @@ void GameStateEditor::handleInput()
                 // Change the view so it matches the resized window
                 m_gameView.setSize(event.size.width, event.size.height);
                 m_gameView.zoom(m_zoomLevel);
+
                 m_guiView.setSize(event.size.width, event.size.height);
+
                 m_game->m_background.setPosition(
                         m_game->m_window.mapPixelToCoords(sf::Vector2i(0, 0), this->m_guiView));
                 m_game->m_background.setScale(
