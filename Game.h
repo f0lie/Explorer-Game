@@ -40,6 +40,7 @@ public:
 
     const static int tileSize{8};
 
+    //TODO: type alias for tileAtlas
     std::map<std::string, Tile> m_tileAtlas;
 private:
     void loadTextures();
