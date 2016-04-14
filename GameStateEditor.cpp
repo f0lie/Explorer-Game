@@ -5,7 +5,10 @@ GameStateEditor::GameStateEditor(Game *game) : GameState(game),
                                                m_guiView(),
                                                m_gameView(),
                                                m_map("city_map.dat", 64, 64, game->m_tileAtlas),
-                                               m_zoomLevel(1.0f)
+                                               m_zoomLevel(1.0f),
+                                               m_selectionStart(0, 0),
+                                               m_selectionEnd(0, 0),
+                                               m_currentTile(&game->m_tileAtlas.at("grass"))
 {
     sf::Vector2f pos{m_game->m_window.getSize()};
     m_guiView.setSize(pos);
@@ -75,6 +78,28 @@ void GameStateEditor::handleInput()
                     m_gameView.move(-1.0f * pos * m_zoomLevel);
                     m_panningAnchor = sf::Mouse::getPosition(m_game->m_window);
                 }
+                else if(m_actionState == ActionState::SELECTING)
+                {
+                    sf::Vector2f pos = m_game->m_window.mapPixelToCoords(sf::Mouse::getPosition(m_game->m_window), m_gameView);
+                    m_selectionEnd.x = pos.y / (m_map.m_tileSize) + pos.x / (2*m_map.m_tileSize) - m_map.m_width * 0.5 - 0.5;
+                    m_selectionEnd.y = pos.y / (m_map.m_tileSize) - pos.x / (2*m_map.m_tileSize) + m_map.m_width * 0.5 + 0.5;
+
+                    m_map.clearSelected();
+                    if(m_currentTile->m_tileType == TileType::GRASS)
+                    {
+                        m_map.select(m_selectionStart, m_selectionEnd, {m_currentTile->m_tileType, TileType::WATER});
+                    }
+                    else
+                    {
+                        m_map.select(m_selectionStart, m_selectionEnd,
+                            {
+                                    m_currentTile->m_tileType,    TileType::FOREST,
+                                    TileType::WATER,                TileType::ROAD,
+                                    TileType::RESIDENTIAL,          TileType::COMMERCIAL,
+                                    TileType::INDUSTRIAL
+                            });
+                    }
+                }
                 break;
             }
             case sf::Event::MouseButtonPressed:
@@ -82,10 +107,29 @@ void GameStateEditor::handleInput()
                 // Start panning
                 if(event.mouseButton.button == sf::Mouse::Middle)
                 {
-                    if(m_actionState != ActionState::PANNING)
+                    if(m_actionState == ActionState::PANNING)
                     {
                         m_actionState = ActionState::PANNING;
                         m_panningAnchor = sf::Mouse::getPosition(m_game->m_window);
+                    }
+                }
+                else if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    // Select map tile
+                    if(m_actionState != ActionState::SELECTING)
+                    {
+                        m_actionState = ActionState::SELECTING;
+                        sf::Vector2f pos = m_game->m_window.mapPixelToCoords(sf::Mouse::getPosition(m_game->m_window), m_gameView);
+                        m_selectionStart.x = pos.y / (m_map.m_tileSize) + pos.x / (2*m_map.m_tileSize) - m_map.m_width * 0.5 - 0.5;
+                        m_selectionStart.y = pos.y / (m_map.m_tileSize) - pos.x / (2*m_map.m_tileSize) + m_map.m_width * 0.5 + 0.5;
+                    }
+                }
+                else if (event.mouseButton.button == sf::Mouse::Right)
+                {
+                    if (m_actionState == ActionState::SELECTING)
+                    {
+                        m_actionState = ActionState::NONE;
+                        m_map.clearSelected();
                     }
                 }
                 break;
@@ -96,6 +140,15 @@ void GameStateEditor::handleInput()
                 if(event.mouseButton.button == sf::Mouse::Middle)
                 {
                     m_actionState = ActionState::NONE;
+                }
+                // Stop selecting
+                else if (event.mouseButton.button == sf::Mouse::Left)
+                {
+                    if(m_actionState == ActionState::SELECTING)
+                    {
+                        m_actionState = ActionState::NONE;
+                        m_map.clearSelected();
+                    }
                 }
                 break;
             }

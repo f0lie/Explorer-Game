@@ -7,7 +7,7 @@
 #include "Map.h"
 
 enum class ActionState {
-    NONE, PANNING
+    NONE, PANNING, SELECTING
 };
 
 class GameStateEditor : public GameState
@@ -31,6 +31,11 @@ private:
 
     sf::Vector2i m_panningAnchor;
     float m_zoomLevel;
+
+    sf::Vector2i m_selectionStart;
+    sf::Vector2i m_selectionEnd;
+
+    Tile* m_currentTile;
 };
 
 

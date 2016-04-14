@@ -17,6 +17,7 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
     for (int pos = 0; pos < m_width * m_height; pos++)
     {
         m_resources.push_back(255);
+        m_selected.push_back(0);
 
         TileType tileType;
         inputFile.read((char *) &tileType, sizeof(int));
@@ -84,6 +85,11 @@ void Map::draw(sf::RenderWindow &window, float dt)
             pos.x = (x - y) * m_tileSize + m_width * m_tileSize;
             pos.y = (x + y) * m_tileSize * 0.5f;
             m_tiles[y * m_width + x].m_sprite.setPosition(pos);
+
+            if(m_selected[y*m_width+x])
+                m_tiles[y*m_width+x].m_sprite.setColor(sf::Color(0x7d, 0x7d, 0x7d));
+            else
+                m_tiles[y*m_width+x].m_sprite.setColor(sf::Color(0xff, 0xff, 0xff));
 
             // Draw the tile
             m_tiles[y * m_width + x].draw(window, dt);
@@ -227,4 +233,57 @@ void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType=0
         }
     }
     m_numRegions[regionType] = regions;
+}
+
+void Map::clearSelected()
+{
+    for (auto& tile : m_selected)
+    {
+        tile = 0;
+    }
+    m_numSelected = 0;
+}
+
+inline int clamp(int n, int lower, int upper)
+{
+    return std::max(lower, std::min(n, upper));
+}
+
+void Map::select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> blacklist)
+{
+    // Swap the coordinates if necessary
+    if(end.y < start.y)
+    {
+        std::swap(start.y, end.y);
+    }
+    if(end.x < start.x)
+    {
+        std::swap(start.x, end.x);
+    }
+
+    // Clamp in range
+    end.x = clamp(end.x, 0, m_width-1);
+    end.y = clamp(end.y, 0, m_height-1);
+    start.x = clamp(start.x, 0, m_width-1);
+    start.y = clamp(start.y, 0, m_height-1);
+
+    for(int y = start.y; y <= end.y; y++)
+    {
+        for(int x = start.x; x <= end.x; x++)
+        {
+            // Select the tile and deselect the blacklisted ones
+            m_selected[y * m_width + x] = 1;
+            m_numSelected++;
+            for(auto type : blacklist)
+            {
+                if(m_tiles[y * m_width + x].m_tileType == type)
+                {
+                    m_selected[y * m_width + x] = 2;
+                    m_numSelected--;
+                    break;
+                }
+            }
+
+        }
+    }
 }
