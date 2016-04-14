@@ -7,6 +7,8 @@
 
 struct Animation
 {
+    Animation() = default;
+
     Animation(unsigned int startFrame, unsigned int endFrame, float duration) : m_startFrame(startFrame),
                                                                                 m_endFrame(endFrame),
                                                                                 m_duration(duration)
