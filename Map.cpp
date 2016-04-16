@@ -21,6 +21,7 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
 
         TileType tileType;
         inputFile.read((char *) &tileType, sizeof(int));
+        // TODO: Change to RPG types
         switch (tileType)
         {
             case TileType::VOID:
@@ -61,6 +62,7 @@ void Map::save(const std::string &filename)
     std::ofstream outputFile;
     outputFile.open(filename, std::ios::out | std::ios::binary);
 
+    // TODO: Change the storaging system to match RPG members
     for (auto tile : m_tiles)
     {
         outputFile.write((char *) &tile.m_tileType, sizeof(int));
@@ -83,11 +85,13 @@ void Map::draw(sf::RenderWindow &window, float dt)
              * Set the position of the tile in the 2d world
              * This match is for isometric grids
              */
+            // TODO: Change the view to orthographic view
             sf::Vector2f pos;
             pos.x = (x - y) * m_tileSize + m_width * m_tileSize;
             pos.y = (x + y) * m_tileSize * 0.5f;
             m_tiles[y * m_width + x].m_sprite.setPosition(pos);
 
+            // TODO: Remove the highlighting
             if (m_selected[y * m_width + x])
             {
                 m_tiles[y * m_width + x].m_sprite.setColor(sf::Color(0x7d, 0x7d, 0x7d));
@@ -241,6 +245,7 @@ inline int clamp(int n, int lower, int upper)
     return std::max(lower, std::min(n, upper));
 }
 
+// TODO: Remove this for RPG game
 void Map::select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> blacklist)
 {
     /* Swap the coordinates if necessary */

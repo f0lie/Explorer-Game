@@ -1,6 +1,7 @@
 #include "GameState.h"
 #include "GameStateEditor.h"
 
+// TODO: Entire class is almost useless for RPG game. However methods here are useful for other things.
 GameStateEditor::GameStateEditor(Game *game) : GameState(game),
                                                m_guiView(),
                                                m_gameView(),
@@ -78,6 +79,7 @@ void GameStateEditor::handleInput()
                     m_gameView.move(-1.0f * pos * m_zoomLevel);
                     m_panningAnchor = sf::Mouse::getPosition(m_game->m_window);
                 }
+                    // TODO: Remove selecting
                 else if (m_actionState == ActionState::SELECTING)
                 {
                     sf::Vector2f pos = m_game->m_window.mapPixelToCoords(sf::Mouse::getPosition(m_game->m_window),
@@ -116,6 +118,7 @@ void GameStateEditor::handleInput()
                         m_panningAnchor = sf::Mouse::getPosition(m_game->m_window);
                     }
                 }
+                    // TODO: Remove selecting
                 else if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     // Select map tile
@@ -130,6 +133,7 @@ void GameStateEditor::handleInput()
                                 pos.y / (m_map.m_tileSize) - pos.x / (2 * m_map.m_tileSize) + m_map.m_width * 0.5 + 0.5;
                     }
                 }
+                    // TODO: Remove unselecting
                 else if (event.mouseButton.button == sf::Mouse::Right)
                 {
                     if (m_actionState == ActionState::SELECTING)
@@ -160,6 +164,7 @@ void GameStateEditor::handleInput()
             }
             case sf::Event::MouseWheelMoved:
             {
+                // TODO: Reduce the speed of zooming
                 if (event.mouseWheel.delta < 0)
                 {
                     m_gameView.zoom(2.0f);

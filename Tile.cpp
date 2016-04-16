@@ -41,6 +41,7 @@ void Tile::draw(sf::RenderWindow &window, const float dt)
 
 void Tile::update()
 {
+// TODO: Change the tiles to RPG ones
     /* If the population is at the maximum value for the tile,
      * there is a small chance that the tile will increase its
      * building stage */
@@ -56,6 +57,7 @@ void Tile::update()
 
 std::string tileTypeToStr(TileType type)
 {
+// TODO: Change the tiles to RPG ones
     switch (type)
     {
         default:

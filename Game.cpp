@@ -46,6 +46,7 @@ void Game::run()
 void Game::pushState(std::unique_ptr<GameState> state)
 {
     // http://stackoverflow.com/questions/8114276/how-do-i-pass-a-unique-ptr-argument-to-a-constructor-or-a-function
+    // m_states owns the states so move is required
     m_states.push(std::move(state));
 }
 
@@ -76,6 +77,7 @@ GameState *Game::peekState()
 
 void Game::loadTiles()
 {
+    // TODO: Change the atlas to load RPG tiles with appropriate members
     Animation staticAnim(0, 0, 1.0f);
     m_tileAtlas["grass"] =
             Tile(tileSize, 1, m_texmgr.getRef("grass"),
@@ -116,6 +118,7 @@ void Game::loadTiles()
 
 void Game::loadTextures()
 {
+    // TODO: Change to load RPG texture, assuming we made them...
     m_texmgr.loadTexture("grass",         "media/grass.png");
     m_texmgr.loadTexture("forest",        "media/forest.png");
     m_texmgr.loadTexture("water",         "media/water.png");
