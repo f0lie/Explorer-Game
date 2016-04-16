@@ -16,6 +16,18 @@ class GameState;
 class Game
 {
 public:
+    // Public members for now
+    sf::RenderWindow m_window;
+    sf::Sprite m_background;
+    TextureManager m_texmgr;
+
+    const static int tileSize{8};
+
+    //TODO: type alias for tileAtlas
+    std::map<std::string, Tile> m_tileAtlas;
+    std::map<std::string, GuiStyle> m_stylesheets;
+    std::map<std::string, sf::Font> m_fonts;
+
     Game();
 
     /*
@@ -34,17 +46,6 @@ public:
 
     void run();
 
-    // Public members for now
-    sf::RenderWindow m_window;
-    sf::Sprite m_background;
-    TextureManager m_texmgr;
-
-    const static int tileSize{8};
-
-    //TODO: type alias for tileAtlas
-    std::map<std::string, Tile> m_tileAtlas;
-    std::map<std::string, GuiStyle> m_stylesheets;
-    std::map<std::string, sf::Font> m_fonts;
 private:
     void loadTextures();
 

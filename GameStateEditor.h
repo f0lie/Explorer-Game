@@ -10,6 +10,7 @@ enum class ActionState {
     NONE, PANNING, SELECTING
 };
 
+//TODO: Remove this class because you don't need to edit the world in a RPG
 class GameStateEditor : public GameState
 {
 public:

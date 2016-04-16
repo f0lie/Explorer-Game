@@ -29,21 +29,20 @@ struct GuiStyle
     GuiStyle() = default;
 
     GuiStyle(sf::Font *font, float borderSize, const sf::Color &bodyCol, const sf::Color &borderCol,
-                 const sf::Color &textCol, const sf::Color &bodyHighlightCol, const sf::Color &borderHighlightCol,
-                 const sf::Color &textHighlightCol) : m_bodyCol(bodyCol),
+             const sf::Color &textCol, const sf::Color &bodyHighlightCol, const sf::Color &borderHighlightCol,
+             const sf::Color &textHighlightCol) : m_bodyCol(bodyCol),
                                                   m_bodyHighlightCol(bodyHighlightCol),
                                                   m_borderCol(borderCol),
                                                   m_borderHighlightCol(borderHighlightCol),
                                                   m_textCol(textCol),
                                                   m_textHighlightCol(textHighlightCol),
                                                   m_font(font),
-                                                  m_bordersize(borderSize)
-    { }
+                                                  m_bordersize(borderSize) { }
 };
 
 struct GuiEntry
 {
-    // Handles appearence of the entry
+    // Handles appearance of the entry
     sf::RectangleShape m_shape;
 
     // String returned when entry is activated
@@ -56,8 +55,7 @@ struct GuiEntry
 
     GuiEntry(const std::string &message, const sf::RectangleShape &shape, const sf::Text &text) : m_shape(shape),
                                                                                                   m_message(message),
-                                                                                                  m_text(text)
-    { }
+                                                                                                  m_text(text) { }
 };
 
 class Gui : public sf::Transformable, public sf::Drawable
@@ -86,6 +84,7 @@ public:
     /* Draw the menu. */
     virtual void draw(sf::RenderTarget &target, sf::RenderStates states) const;
 
+    /* Make the GUI visable and position the entries correctly */
     void show();
 
     void hide();

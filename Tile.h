@@ -17,18 +17,6 @@ std::string tileTypeToStr(TileType type);
 class Tile
 {
 public:
-
-
-    Tile() = default;
-    Tile(unsigned int tileSize, unsigned int height, sf::Texture &texture,
-         const std::vector<Animation>& animations,
-         TileType tileType, unsigned int cost, unsigned int maxPopPerLevel,
-         unsigned int maxLevels);
-
-    void draw(sf::RenderWindow& window, const float dt);
-
-    void update();
-
     AnimationHandler m_animHandler;
     sf::Sprite m_sprite;
 
@@ -45,6 +33,19 @@ public:
     unsigned int m_maxLevels;
     float m_production;
     float m_storedGoods;
+
+    Tile() = default;
+
+    Tile(unsigned int tileSize, unsigned int height, sf::Texture &texture,
+         const std::vector<Animation> &animations,
+         TileType tileType, unsigned int cost, unsigned int maxPopPerLevel,
+         unsigned int maxLevels);
+
+    void draw(sf::RenderWindow &window, const float dt);
+
+    void update();
+
+
 };
 
 #endif //LEGEND_OF_THE_SWAMP_TILE_H

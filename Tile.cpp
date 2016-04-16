@@ -1,7 +1,7 @@
 #include "Tile.h"
 
 Tile::Tile(unsigned int tileSize, unsigned int height, sf::Texture &texture,
-           const std::vector<Animation>& animations,
+           const std::vector<Animation> &animations,
            TileType tileType, unsigned int cost, unsigned int maxPopPerLevel,
            unsigned int maxLevels) : m_tileType(tileType),
                                      m_tileVariant(0),
@@ -50,10 +50,7 @@ void Tile::update()
         m_population == m_maxPopPerLevel * (m_tileVariant + 1) &&
         m_tileVariant < m_maxLevels)
     {
-        if (rand() % int(1e4) < 1e2 / (m_tileVariant + 1))
-        {
-            ++m_tileVariant;
-        }
+        if (rand() % int(1e4) < 1e2 / (m_tileVariant + 1)) { ++m_tileVariant; }
     }
 }
 

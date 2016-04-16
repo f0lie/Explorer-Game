@@ -4,7 +4,7 @@
 
 #include "Map.h"
 
-// Load map from disk
+/* Load map from disk */
 void Map::load(const std::string &filename, unsigned int width, unsigned int height,
                std::map<std::string, Tile> &tileAtlas)
 {
@@ -79,19 +79,25 @@ void Map::draw(sf::RenderWindow &window, float dt)
     {
         for (int x = 0; x < m_width; x++)
         {
-            // Set the position of the tile in the 2d world
-            // This match is for isometric grids
+            /*
+             * Set the position of the tile in the 2d world
+             * This match is for isometric grids
+             */
             sf::Vector2f pos;
             pos.x = (x - y) * m_tileSize + m_width * m_tileSize;
             pos.y = (x + y) * m_tileSize * 0.5f;
             m_tiles[y * m_width + x].m_sprite.setPosition(pos);
 
-            if(m_selected[y*m_width+x])
-                m_tiles[y*m_width+x].m_sprite.setColor(sf::Color(0x7d, 0x7d, 0x7d));
+            if (m_selected[y * m_width + x])
+            {
+                m_tiles[y * m_width + x].m_sprite.setColor(sf::Color(0x7d, 0x7d, 0x7d));
+            }
             else
-                m_tiles[y*m_width+x].m_sprite.setColor(sf::Color(0xff, 0xff, 0xff));
+            {
+                m_tiles[y * m_width + x].m_sprite.setColor(sf::Color(0xff, 0xff, 0xff));
+            }
 
-            // Draw the tile
+            /* Draw the tile */
             m_tiles[y * m_width + x].draw(window, dt);
         }
     }
@@ -105,7 +111,7 @@ void Map::updateDirection(TileType tileType)
         {
             int pos = y * m_width + x;
 
-            if (m_tiles[pos].m_tileType != tileType) continue;
+            if (m_tiles[pos].m_tileType != tileType) { continue; }
 
             bool adjacentTiles[3][3] = {{0, 0, 0},
                                         {0, 0, 0},
@@ -167,18 +173,9 @@ void Map::updateDirection(TileType tileType)
 void Map::depthFirstSearch(std::vector<TileType> &whitelist,
                            sf::Vector2i pos, int label, int regionType = 0)
 {
-    if (pos.x < 0 || pos.x >= m_width)
-    {
-        return;
-    }
-    if (pos.y < 0 || pos.y >= m_height)
-    {
-        return;
-    }
-    if (m_tiles[pos.y * m_width + pos.x].m_regions[regionType] != 0)
-    {
-        return;
-    }
+    if (pos.x < 0 || pos.x >= m_width) { return; }
+    if (pos.y < 0 || pos.y >= m_height) { return; }
+    if (m_tiles[pos.y * m_width + pos.x].m_regions[regionType] != 0) { return; }
 
     bool found = false;
     for (auto type : whitelist)
@@ -189,10 +186,7 @@ void Map::depthFirstSearch(std::vector<TileType> &whitelist,
             break;
         }
     }
-    if (!found)
-    {
-        return;
-    }
+    if (!found) { return; }
 
     m_tiles[pos.y * m_width + pos.x].m_regions[regionType] = label;
 
@@ -200,33 +194,31 @@ void Map::depthFirstSearch(std::vector<TileType> &whitelist,
     depthFirstSearch(whitelist, pos + sf::Vector2i(0, 1), label, regionType);
     depthFirstSearch(whitelist, pos + sf::Vector2i(1, 0), label, regionType);
     depthFirstSearch(whitelist, pos + sf::Vector2i(0, -1), label, regionType);
-
-    return;
 }
 
-void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType=0)
+void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType = 0)
 {
     int regions = 1;
 
-    for(auto& tile : m_tiles)
+    for (auto &tile : m_tiles)
     {
         tile.m_regions[regionType] = 0;
     }
 
-    for(int y = 0; y < m_height; ++y)
+    for (int y = 0; y < m_height; ++y)
     {
-        for(int x = 0; x < m_width; ++x)
+        for (int x = 0; x < m_width; ++x)
         {
             bool found = false;
-            for(auto type : whitelist)
+            for (auto type : whitelist)
             {
-                if(type == m_tiles[y*m_width+x].m_tileType)
+                if (type == m_tiles[y * m_width + x].m_tileType)
                 {
                     found = true;
                     break;
                 }
             }
-            if(m_tiles[y*m_width+x].m_regions[regionType] == 0 && found)
+            if (m_tiles[y * m_width + x].m_regions[regionType] == 0 && found)
             {
                 depthFirstSearch(whitelist, sf::Vector2i(x, y), regions++, regionType);
             }
@@ -237,7 +229,7 @@ void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType=0
 
 void Map::clearSelected()
 {
-    for (auto& tile : m_selected)
+    for (auto &tile : m_selected)
     {
         tile = 0;
     }
@@ -251,32 +243,26 @@ inline int clamp(int n, int lower, int upper)
 
 void Map::select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> blacklist)
 {
-    // Swap the coordinates if necessary
-    if(end.y < start.y)
-    {
-        std::swap(start.y, end.y);
-    }
-    if(end.x < start.x)
-    {
-        std::swap(start.x, end.x);
-    }
+    /* Swap the coordinates if necessary */
+    if (end.y < start.y) { std::swap(start.y, end.y); }
+    if (end.x < start.x) { std::swap(start.x, end.x); }
 
-    // Clamp in range
-    end.x = clamp(end.x, 0, m_width-1);
-    end.y = clamp(end.y, 0, m_height-1);
-    start.x = clamp(start.x, 0, m_width-1);
-    start.y = clamp(start.y, 0, m_height-1);
+    /* Clamp in range */
+    end.x = clamp(end.x, 0, m_width - 1);
+    end.y = clamp(end.y, 0, m_height - 1);
+    start.x = clamp(start.x, 0, m_width - 1);
+    start.y = clamp(start.y, 0, m_height - 1);
 
-    for(int y = start.y; y <= end.y; y++)
+    for (int y = start.y; y <= end.y; y++)
     {
-        for(int x = start.x; x <= end.x; x++)
+        for (int x = start.x; x <= end.x; x++)
         {
-            // Select the tile and deselect the blacklisted ones
+            /* Select the tile and deselect the blacklisted ones */
             m_selected[y * m_width + x] = 1;
             m_numSelected++;
-            for(auto type : blacklist)
+            for (auto type : blacklist)
             {
-                if(m_tiles[y * m_width + x].m_tileType == type)
+                if (m_tiles[y * m_width + x].m_tileType == type)
                 {
                     m_selected[y * m_width + x] = 2;
                     m_numSelected--;

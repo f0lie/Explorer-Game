@@ -31,10 +31,8 @@ Gui::Gui(const sf::Vector2f &dimensions, int padding, bool horizontal, const Gui
 int Gui::getEntry(const sf::Vector2f mousePos)
 {
     // If there are no entries then outside the menu
-    if (m_entries.size() == 0)
-    { return -1; }
-    if (!m_visable)
-    { return -1; }
+    if (m_entries.size() == 0) { return -1; }
+    if (!m_visable) { return -1; }
 
     for (int i = 0; i < m_entries.size(); i++)
     {
@@ -44,10 +42,8 @@ int Gui::getEntry(const sf::Vector2f mousePos)
         point += m_entries[i].m_shape.getOrigin();
         point -= m_entries[i].m_shape.getPosition();
 
-        if (point.x < 0 || point.x > m_entries[i].m_shape.getScale().x * m_dimensions.x)
-        { continue; }
-        if (point.y < 0 || point.y > m_entries[i].m_shape.getScale().y * m_dimensions.y)
-        { continue; }
+        if (point.x < 0 || point.x > m_entries[i].m_shape.getScale().x * m_dimensions.x) { continue; }
+        if (point.y < 0 || point.y > m_entries[i].m_shape.getScale().y * m_dimensions.y) { continue; }
         return i;
     }
 
@@ -56,8 +52,7 @@ int Gui::getEntry(const sf::Vector2f mousePos)
 
 void Gui::setEntryText(int entry, const std::string &text)
 {
-    if (entry < 0 || entry > m_entries.size())
-    { return; }
+    if (entry < 0 || entry > m_entries.size()) { return; }
 
     m_entries[entry].m_text.setString(text);
 }
@@ -75,8 +70,7 @@ void Gui::setDimensions(sf::Vector2f dimensions)
 
 void Gui::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    if (!m_visable)
-    { return; }
+    if (!m_visable) { return; }
 
     // Draw each entry of the menu
     for (const auto &entry : m_entries)
@@ -144,8 +138,7 @@ void Gui::highlight(const int entry)
 
 std::string Gui::activate(const int entry)
 {
-    if (entry < 0)
-    { return "null"; }
+    if (entry < 0) { return "null"; }
     return m_entries[entry].m_message;
 }
 

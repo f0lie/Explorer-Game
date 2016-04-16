@@ -21,8 +21,7 @@ void GameStateStart::draw(const float dt)
     m_game->m_window.clear(sf::Color::Black);
     m_game->m_window.draw(m_game->m_background);
 
-    for (const auto &gui : m_guiSystem)
-    { m_game->m_window.draw(gui.second); }
+    for (const auto &gui : m_guiSystem) { m_game->m_window.draw(gui.second); }
 }
 
 void GameStateStart::update(const float dt)
@@ -73,15 +72,13 @@ void GameStateStart::handleInput()
                 if (event.mouseButton.button == sf::Mouse::Left)
                 {
                     std::string msg = m_guiSystem.at("menu").activate(mousePos);
-                    if (msg == "load_game")
-                    { loadGame(); }
+                    if (msg == "load_game") { loadGame(); }
                 }
                 break;
             }
             case sf::Event::KeyPressed:
             {
-                if (event.key.code == sf::Keyboard::Escape)
-                { m_game->m_window.close(); }
+                if (event.key.code == sf::Keyboard::Escape) { m_game->m_window.close(); }
                 break;
             }
             default:

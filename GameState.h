@@ -14,8 +14,7 @@ public:
     virtual void handleInput() = 0;
 
 protected:
-    GameState(Game *game) : m_game(game)
-    { }
+    GameState(Game *game) : m_game(game) { }
 
     Game *m_game;
 };

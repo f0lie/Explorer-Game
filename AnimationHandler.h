@@ -7,32 +7,34 @@
 
 struct Animation
 {
-    Animation() = default;
-
-    Animation(unsigned int startFrame, unsigned int endFrame, float duration) : m_startFrame(startFrame),
-                                                                                m_endFrame(endFrame),
-                                                                                m_duration(duration)
-    { }
-
     unsigned int m_startFrame;
     unsigned int m_endFrame;
     float m_duration;
 
-    unsigned int getLength() const noexcept
-    { return m_endFrame - m_startFrame + 1; }
+    Animation() = default;
+
+    Animation(unsigned int startFrame, unsigned int endFrame, float duration) : m_startFrame(startFrame),
+                                                                                m_endFrame(endFrame),
+                                                                                m_duration(duration) { }
+
+    unsigned int getLength() const noexcept { return m_endFrame - m_startFrame + 1; }
 };
 
 class AnimationHandler
 {
 public:
+    // Current section of the txture that should be displayed
+    sf::IntRect m_bounds;
+
+    // Pixel dimensions of each individual frame
+    sf::IntRect m_frameSize;
+
     AnimationHandler() : m_t(0.0f),
-                         m_currentAnim(-1)
-    { };
+                         m_currentAnim(-1) { };
 
     AnimationHandler(const sf::IntRect &framesize) : m_frameSize(framesize),
                                                      m_t(0.0f),
-                                                     m_currentAnim(-1)
-    { };
+                                                     m_currentAnim(-1) { };
 
     void addAnim(Animation &anim);
 
@@ -44,12 +46,6 @@ public:
 
     // Change the animation, resetting m_t in the process
     void changeAnim(unsigned int animID);
-
-    // Current section of the txture that should be displayed
-    sf::IntRect m_bounds;
-
-    // Pixel dimensions of each individual frame
-    sf::IntRect m_frameSize;
 
 private:
     // Array of animations
