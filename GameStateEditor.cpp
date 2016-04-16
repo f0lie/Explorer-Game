@@ -62,8 +62,7 @@ void GameStateEditor::handleInput()
 
                 m_guiView.setSize(event.size.width, event.size.height);
 
-                m_game->m_background.setPosition(
-                        m_game->m_window.mapPixelToCoords(sf::Vector2i(0, 0), this->m_guiView));
+                m_game->m_background.setPosition(m_game->m_window.mapPixelToCoords(sf::Vector2i(0, 0), this->m_guiView));
                 m_game->m_background.setScale(
                         float(event.size.width) / float(m_game->m_background.getTexture()->getSize().x),
                         float(event.size.height) / float(m_game->m_background.getTexture()->getSize().y));

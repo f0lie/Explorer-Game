@@ -27,7 +27,7 @@ set(EXECUTABLE_NAME "legend_of_the_swamp")
 file(GLOB LEGEND_OF_THE_SWAMP_SRC
         "*.h"
         "*.cpp")
-add_executable(${EXECUTABLE_NAME} ${LEGEND_OF_THE_SWAMP_SRC} Map.cpp Map.h)
+add_executable(${EXECUTABLE_NAME} ${LEGEND_OF_THE_SWAMP_SRC} Map.cpp Map.h Gui.cpp Gui.h)
 
 
 # Detect and add SFML

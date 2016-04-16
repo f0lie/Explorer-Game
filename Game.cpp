@@ -9,6 +9,8 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
 {
     loadTextures();
     loadTiles();
+    loadFonts();
+    loadStylesheets();
 
     m_window.setFramerateLimit(60);
 
@@ -123,4 +125,21 @@ void Game::loadTextures()
     m_texmgr.loadTexture("road",          "media/road.png");
 
     m_texmgr.loadTexture("background",    "media/background.png");
+}
+
+void Game::loadFonts()
+{
+    sf::Font font;
+    font.loadFromFile("media/font.ttf");
+    m_fonts["main_font"] = font;
+}
+
+void Game::loadStylesheets()
+{
+    m_stylesheets["button"] = GuiStyle(&m_fonts.at("main_font"), 1,
+                                       sf::Color(0xc6,0xc6,0xc6), sf::Color(0x94,0x94,0x94), sf::Color(0x00,0x00,0x00),
+                                       sf::Color(0x61,0x61,0x61), sf::Color(0x94,0x94,0x94), sf::Color(0x00,0x00,0x00));
+    m_stylesheets["text"] = GuiStyle(&m_fonts.at("main_font"), 0,
+                                     sf::Color(0x00,0x00,0x00,0x00), sf::Color(0x00,0x00,0x00), sf::Color(0xff,0xff,0xff),
+                                     sf::Color(0x00,0x00,0x00,0x00), sf::Color(0x00,0x00,0x00), sf::Color(0xff,0x00,0x00));
 }

@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include <utility>
+
 #include "GameState.h"
 
 // First state to load
@@ -21,6 +23,8 @@ private:
     void loadGame();
 
     sf::View m_view;
+
+    std::map<std::string, Gui> m_guiSystem;
 };
 
 

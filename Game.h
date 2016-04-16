@@ -7,6 +7,7 @@
 #include <memory>
 #include <map>
 
+#include "Gui.h"
 #include "TextureManager.h"
 #include "Tile.h"
 
@@ -42,10 +43,16 @@ public:
 
     //TODO: type alias for tileAtlas
     std::map<std::string, Tile> m_tileAtlas;
+    std::map<std::string, GuiStyle> m_stylesheets;
+    std::map<std::string, sf::Font> m_fonts;
 private:
     void loadTextures();
 
     void loadTiles();
+
+    void loadStylesheets();
+
+    void loadFonts();
 };
 
 
