@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "GameState.h"
-#include "Map.h"
+#include "City.h"
 
 enum class ActionState {
     NONE, PANNING, SELECTING
@@ -28,7 +28,10 @@ private:
     sf::View m_gameView;
     sf::View m_guiView;
 
-    Map m_map;
+    std::map<std::string, Gui> m_guiSystem;
+
+    // TODO: Remove city member
+    City m_city;
 
     sf::Vector2i m_panningAnchor;
     float m_zoomLevel;

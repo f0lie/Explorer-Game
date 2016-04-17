@@ -24,7 +24,7 @@ struct GuiStyle
 
     sf::Font *m_font;
 
-    float m_bordersize;
+    float m_borderSize;
 
     GuiStyle() = default;
 
@@ -37,7 +37,7 @@ struct GuiStyle
                                                   m_textCol(textCol),
                                                   m_textHighlightCol(textHighlightCol),
                                                   m_font(font),
-                                                  m_bordersize(borderSize) { }
+                                                  m_borderSize(borderSize) { }
 };
 
 struct GuiEntry

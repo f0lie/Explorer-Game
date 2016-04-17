@@ -21,7 +21,7 @@ public:
     sf::Sprite m_background;
     TextureManager m_texmgr;
 
-    const static int tileSize{8};
+    const static int m_tileSize{8};
 
     //TODO: type alias for tileAtlas
     std::map<std::string, Tile> m_tileAtlas;

@@ -132,7 +132,7 @@ void City::load(std::string cityName, std::map<std::string, Tile> &tileAtlas)
 
     inputFile.close();
 
-    this->map.load(cityName + "_map.m_dat", width, height, tileAtlas);
+    this->map.load(cityName + "_map.dat", width, height, tileAtlas);
     tileChanged();
 
     return;
@@ -159,7 +159,7 @@ void City::save(std::string cityName)
 
     outputFile.close();
 
-    this->map.save(cityName + "_map.m_dat");
+    this->map.save(cityName + "_map.dat");
 
     return;
 }

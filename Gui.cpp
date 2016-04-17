@@ -14,15 +14,18 @@ Gui::Gui(const sf::Vector2f &dimensions, int padding, bool horizontal, const Gui
     // Background shape
     sf::RectangleShape shape(dimensions);
     shape.setFillColor(m_style.m_bodyCol);
-    shape.setOutlineThickness(-m_style.m_bordersize);
+    shape.setOutlineThickness(-m_style.m_borderSize);
     shape.setOutlineColor(m_style.m_borderCol);
 
     // Gui entries
     for (const auto &entry : entries)
     {
         // Fit the text within the entity box;
-        sf::Text text(entry.first, *style.m_font, m_dimensions.y - style.m_bordersize - padding);
-        text.setColor(m_style.m_textCol);
+        sf::Text text;
+        text.setString(entry.first);
+        text.setFont(*style.m_font);
+        text.setColor(style.m_textCol);
+        text.setCharacterSize(dimensions.y - style.m_borderSize - padding);
 
         m_entries.push_back(GuiEntry(entry.second, shape, text));
     }
@@ -64,7 +67,7 @@ void Gui::setDimensions(sf::Vector2f dimensions)
     for (auto &entry : m_entries)
     {
         entry.m_shape.setSize(dimensions);
-        entry.m_text.setCharacterSize(dimensions.y - m_style.m_bordersize - m_padding);
+        entry.m_text.setCharacterSize(dimensions.y - m_style.m_borderSize - m_padding);
     }
 }
 
@@ -82,7 +85,7 @@ void Gui::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 void Gui::show()
 {
-    sf::Vector2f offset{0.0f, 0.0f};
+    sf::Vector2f offset(0.0f, 0.0f);
 
     m_visable = true;
 

@@ -80,35 +80,35 @@ void Game::loadTiles()
     // TODO: Change the atlas to load RPG tiles with appropriate members
     Animation staticAnim(0, 0, 1.0f);
     m_tileAtlas["grass"] =
-            Tile(tileSize, 1, m_texmgr.getRef("grass"),
+            Tile(m_tileSize, 1, m_texmgr.getRef("grass"),
                  { staticAnim },
                  TileType::GRASS, 50, 0, 1);
     m_tileAtlas["forest"] =
-            Tile(tileSize, 1, m_texmgr.getRef("forest"),
+            Tile(m_tileSize, 1, m_texmgr.getRef("forest"),
                  { staticAnim },
                  TileType::FOREST, 100, 0, 1);
     m_tileAtlas["water"] =
-            Tile(tileSize, 1, m_texmgr.getRef("water"),
+            Tile(m_tileSize, 1, m_texmgr.getRef("water"),
                  { Animation(0, 3, 0.5f),
                    Animation(0, 3, 0.5f),
                    Animation(0, 3, 0.5f) },
                  TileType::WATER, 0, 0, 1);
     m_tileAtlas["residential"] =
-            Tile(tileSize, 2, m_texmgr.getRef("residential"),
+            Tile(m_tileSize, 2, m_texmgr.getRef("residential"),
                  { staticAnim, staticAnim, staticAnim,
                    staticAnim, staticAnim, staticAnim },
                  TileType::RESIDENTIAL, 300, 50, 6);
     m_tileAtlas["commercial"] =
-            Tile(tileSize, 2, m_texmgr.getRef("commercial"),
+            Tile(m_tileSize, 2, m_texmgr.getRef("commercial"),
                  { staticAnim, staticAnim, staticAnim, staticAnim},
                  TileType::COMMERCIAL, 300, 50, 4);
     m_tileAtlas["industrial"] =
-            Tile(tileSize, 2, m_texmgr.getRef("industrial"),
+            Tile(m_tileSize, 2, m_texmgr.getRef("industrial"),
                  { staticAnim, staticAnim, staticAnim,
                    staticAnim },
                  TileType::INDUSTRIAL, 300, 50, 4);
     m_tileAtlas["road"] =
-            Tile(tileSize, 1, m_texmgr.getRef("road"),
+            Tile(m_tileSize, 1, m_texmgr.getRef("road"),
                  { staticAnim, staticAnim, staticAnim,
                    staticAnim, staticAnim, staticAnim,
                    staticAnim, staticAnim, staticAnim,
