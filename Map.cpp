@@ -5,6 +5,7 @@
 #include "Map.h"
 
 /* Load map from disk */
+// TODO: Change the binary format to a CSV/human readable format
 void Map::load(const std::string &filename, unsigned int width, unsigned int height,
                std::map<std::string, Tile> &tileAtlas)
 {
@@ -49,12 +50,12 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
     inputFile.close();
 }
 
+// TODO: Save in a human readable format
 void Map::save(const std::string &filename)
 {
     std::ofstream outputFile;
     outputFile.open(filename, std::ios::out | std::ios::binary);
 
-    // TODO: Change the storaging system to match RPG members
     for (auto tile : m_tiles)
     {
         outputFile.write((char *) &tile.m_tileType, sizeof(int));
@@ -73,9 +74,7 @@ void Map::draw(sf::RenderWindow &window, float dt)
         {
             /*
              * Set the position of the tile in the 2d world
-             * This match is for isometric grids
              */
-            // TODO: Change the view to orthographic view
             sf::Vector2f pos;
             pos.x = x * m_tileSize;
             pos.y = y * m_tileSize;
@@ -87,6 +86,7 @@ void Map::draw(sf::RenderWindow &window, float dt)
     }
 }
 
+// TODO: Possibly remove this
 void Map::updateDirection(TileType tileType)
 {
     for(int y = 0; y < m_height; ++y)

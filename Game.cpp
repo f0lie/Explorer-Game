@@ -77,7 +77,8 @@ GameState *Game::peekState()
 
 void Game::loadTiles()
 {
-    // TODO: Change the atlas to load RPG tiles with appropriate members
+    // TODO: Expand on the type of tiles
+    // TODO: Figure out a way to draw Entities on top of tiles
     Animation staticAnim(0, 0, 1.0f);
     m_tileAtlas["grass"] =
             Tile(m_tileSize, 1, m_texmgr.getRef("grass"), {staticAnim}, TileType::GRASS);

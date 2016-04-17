@@ -19,10 +19,11 @@ GameStateEditor::GameStateEditor(Game *game) : GameState(game),
     m_gameView.setCenter(pos);
 
     // Centre the camera on the map
-    sf::Vector2f centre(m_map.m_width, m_map.m_height * 0.5);
+    sf::Vector2f centre(m_map.m_width * 0.5, m_map.m_height * 0.5);
     centre *= float(m_map.m_tileSize);
     m_gameView.setCenter(centre);
 
+    // TODO: Expand on the infobar to include character stats
     m_guiSystem.emplace("infoBar", Gui(sf::Vector2f(m_game->m_window.getSize().x / 5, 16), 2, true,
                                        m_game->m_stylesheets.at("button"),
                                        {std::make_pair("health", "health")}));
