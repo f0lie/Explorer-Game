@@ -174,6 +174,10 @@ void Map::updateDirection(TileType tileType)
     }
 }
 
+// depthFirstSearch and findConnectedRegions are designed for citybuilder tiles.
+// Some tiles depend on the tiles around it so thats why they exist.
+
+// TODO: Possiblely remove this for RPG game
 void Map::depthFirstSearch(std::vector<TileType> &whitelist,
                            sf::Vector2i pos, int label, int regionType = 0)
 {
@@ -200,6 +204,7 @@ void Map::depthFirstSearch(std::vector<TileType> &whitelist,
     depthFirstSearch(whitelist, pos + sf::Vector2i(0, -1), label, regionType);
 }
 
+// TODO: Possiblely remove this for RPG game
 void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType = 0)
 {
     int regions = 1;
@@ -231,6 +236,8 @@ void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType =
     m_numRegions[regionType] = regions;
 }
 
+
+// TODO: Remove this for RPG game
 void Map::clearSelected()
 {
     for (auto &tile : m_selected)
