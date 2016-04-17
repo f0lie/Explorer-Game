@@ -10,7 +10,7 @@ Tile::Tile(unsigned int tileSize,
 {
     m_sprite.setTexture(texture);
 
-    m_animHandler.m_frameSize = sf::IntRect(0, 0, tileSize * 2, tileSize * height);
+    m_animHandler.m_frameSize = sf::IntRect(0, 0, tileSize , tileSize * height);
     for (auto animation : animations)
     {
         m_animHandler.addAnim(animation);
