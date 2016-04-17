@@ -81,16 +81,6 @@ void Map::draw(sf::RenderWindow &window, float dt)
             pos.y = y * m_tileSize;
             m_tiles[y * m_width + x].m_sprite.setPosition(pos);
 
-            // TODO: Remove the highlighting
-            if (m_selected[y * m_width + x])
-            {
-                m_tiles[y * m_width + x].m_sprite.setColor(sf::Color(0x7d, 0x7d, 0x7d));
-            }
-            else
-            {
-                m_tiles[y * m_width + x].m_sprite.setColor(sf::Color(0xff, 0xff, 0xff));
-            }
-
             /* Draw the tile */
             m_tiles[y * m_width + x].draw(window, dt);
         }
@@ -222,54 +212,4 @@ void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType =
         }
     }
     m_numRegions[regionType] = regions;
-}
-
-
-// TODO: Remove this for RPG game
-void Map::clearSelected()
-{
-    for (auto &tile : m_selected)
-    {
-        tile = 0;
-    }
-    m_numSelected = 0;
-}
-
-inline int clamp(int n, int lower, int upper)
-{
-    return std::max(lower, std::min(n, upper));
-}
-
-// TODO: Remove this for RPG game
-void Map::select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> blacklist)
-{
-    /* Swap the coordinates if necessary */
-    if (end.y < start.y) { std::swap(start.y, end.y); }
-    if (end.x < start.x) { std::swap(start.x, end.x); }
-
-    /* Clamp in range */
-    end.x = clamp(end.x, 0, m_width - 1);
-    end.y = clamp(end.y, 0, m_height - 1);
-    start.x = clamp(start.x, 0, m_width - 1);
-    start.y = clamp(start.y, 0, m_height - 1);
-
-    for (int y = start.y; y <= end.y; y++)
-    {
-        for (int x = start.x; x <= end.x; x++)
-        {
-            /* Select the tile and deselect the blacklisted ones */
-            m_selected[y * m_width + x] = 1;
-            m_numSelected++;
-            for (auto type : blacklist)
-            {
-                if (m_tiles[y * m_width + x].m_tileType == type)
-                {
-                    m_selected[y * m_width + x] = 2;
-                    m_numSelected--;
-                    break;
-                }
-            }
-
-        }
-    }
 }

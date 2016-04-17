@@ -1,13 +1,13 @@
 #include "Tile.h"
 
-Tile::Tile(unsigned int tileSize, unsigned int height, sf::Texture &texture,
+Tile::Tile(unsigned int tileSize,
+           unsigned int height,
+           sf::Texture &texture,
            const std::vector<Animation> &animations,
-           TileType tileType, unsigned int cost, unsigned int maxPopPerLevel,
-           unsigned int maxLevels) : m_tileType(tileType),
-                                     m_tileVariant(0),
-                                     m_regions{0}
+           TileType tileType) : m_tileType(tileType),
+                                m_tileVariant(0),
+                                m_regions{0}
 {
-    m_sprite.setOrigin(sf::Vector2f(0.0f, tileSize * (height - 1)));
     m_sprite.setTexture(texture);
 
     m_animHandler.m_frameSize = sf::IntRect(0, 0, tileSize * 2, tileSize * height);

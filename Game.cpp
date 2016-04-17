@@ -80,19 +80,13 @@ void Game::loadTiles()
     // TODO: Change the atlas to load RPG tiles with appropriate members
     Animation staticAnim(0, 0, 1.0f);
     m_tileAtlas["grass"] =
-            Tile(m_tileSize, 1, m_texmgr.getRef("grass"),
-                 { staticAnim },
-                 TileType::GRASS, 50, 0, 1);
+            Tile(m_tileSize, 1, m_texmgr.getRef("grass"), {staticAnim}, TileType::GRASS);
     m_tileAtlas["forest"] =
-            Tile(m_tileSize, 1, m_texmgr.getRef("forest"),
-                 { staticAnim },
-                 TileType::FOREST, 100, 0, 1);
+            Tile(m_tileSize, 1, m_texmgr.getRef("forest"), {staticAnim}, TileType::FOREST);
     m_tileAtlas["water"] =
-            Tile(m_tileSize, 1, m_texmgr.getRef("water"),
-                 { Animation(0, 3, 0.5f),
-                   Animation(0, 3, 0.5f),
-                   Animation(0, 3, 0.5f) },
-                 TileType::WATER, 0, 0, 1);
+            Tile(m_tileSize, 1, m_texmgr.getRef("water"), {Animation(0, 3, 0.5f),
+                                                           Animation(0, 3, 0.5f),
+                                                           Animation(0, 3, 0.5f)}, TileType::WATER);
 }
 
 void Game::loadTextures()

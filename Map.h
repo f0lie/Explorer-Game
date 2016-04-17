@@ -61,12 +61,6 @@ public:
      */
     void updateDirection(TileType tileType);
 
-    /* Select the tiles within the bounds */
-    void select(sf::Vector2i start, sf::Vector2i end, std::vector<TileType> blacklist);
-
-    /* Deselect all tiles */
-    void clearSelected();
-
 private:
     void depthFirstSearch(std::vector<TileType> &whitelist,
                           sf::Vector2i pos, int label, int type);
