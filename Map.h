@@ -17,27 +17,17 @@ public:
 
     std::vector<Tile> m_tiles;
 
-    /* Resource map for industrial tiles */
-    std::vector<int> m_resources;
-
     unsigned int m_tileSize;
-
-    /* 0 = Deselected, 1 = Selected, 2 = Invalid */
-    std::vector<char> m_selected;
-    unsigned int m_numSelected;
 
     unsigned int m_numRegions[1];
 
     Map() : m_tileSize(8),
             m_width(0),
-            m_height(0),
-            m_numRegions{1},
-            m_numSelected(0) { }
+            m_height(0) { }
 
     /* Load map from file constructor */
     Map(const std::string &filename, unsigned int width, unsigned int height,
-        std::map<std::string, Tile> &tileAtlas) : m_tileSize(8),
-                                                  m_numSelected(0)
+        std::map<std::string, Tile> &tileAtlas) : m_tileSize(8)
     {
         load(filename, width, height, tileAtlas);
     }

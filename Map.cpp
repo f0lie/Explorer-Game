@@ -17,9 +17,6 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
 
     for (unsigned int pos = 0; pos < m_width * m_height; pos++)
     {
-        m_resources.push_back(255);
-        m_selected.push_back(0);
-
         TileType tileType;
         inputFile.read((char *) &tileType, sizeof(int));
         // TODO: Change to RPG types
@@ -146,66 +143,4 @@ void Map::updateDirection(TileType tileType)
                 m_tiles[pos].m_tileVariant = 1;
         }
     }
-}
-
-// depthFirstSearch and findConnectedRegions are designed for citybuilder tiles.
-// Some tiles depend on the tiles around it so thats why they exist.
-
-// TODO: Possiblely remove this for RPG game
-void Map::depthFirstSearch(std::vector<TileType> &whitelist,
-                           sf::Vector2i pos, int label, int regionType = 0)
-{
-    if (pos.x < 0 || pos.x >= int(m_width)) { return; }
-    if (pos.y < 0 || pos.y >= int(m_height)) { return; }
-    if (m_tiles[pos.y * m_width + pos.x].m_regions[regionType] != 0) { return; }
-
-    bool found = false;
-    for (auto type : whitelist)
-    {
-        if (type == m_tiles[pos.y * m_width + pos.x].m_tileType)
-        {
-            found = true;
-            break;
-        }
-    }
-    if (!found) { return; }
-
-    m_tiles[pos.y * m_width + pos.x].m_regions[regionType] = label;
-
-    depthFirstSearch(whitelist, pos + sf::Vector2i(-1, 0), label, regionType);
-    depthFirstSearch(whitelist, pos + sf::Vector2i(0, 1), label, regionType);
-    depthFirstSearch(whitelist, pos + sf::Vector2i(1, 0), label, regionType);
-    depthFirstSearch(whitelist, pos + sf::Vector2i(0, -1), label, regionType);
-}
-
-// TODO: Possiblely remove this for RPG game
-void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType = 0)
-{
-    int regions = 1;
-
-    for (auto &tile : m_tiles)
-    {
-        tile.m_regions[regionType] = 0;
-    }
-
-    for (unsigned int y = 0; y < m_height; ++y)
-    {
-        for (unsigned int x = 0; x < m_width; ++x)
-        {
-            bool found = false;
-            for (auto type : whitelist)
-            {
-                if (type == m_tiles[y * m_width + x].m_tileType)
-                {
-                    found = true;
-                    break;
-                }
-            }
-            if (m_tiles[y * m_width + x].m_regions[regionType] == 0 && found)
-            {
-                depthFirstSearch(whitelist, sf::Vector2i(x, y), regions++, regionType);
-            }
-        }
-    }
-    m_numRegions[regionType] = regions;
 }
