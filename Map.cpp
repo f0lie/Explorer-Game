@@ -89,64 +89,66 @@ void Map::draw(sf::RenderWindow &window, float dt)
 // TODO: Possibly remove this
 void Map::updateDirection(TileType tileType)
 {
-    for(int y = 0; y < m_height; ++y)
+    for (int y = 0; y < m_height; ++y)
     {
-        for(int x = 0; x < m_width; ++x)
+        for (int x = 0; x < m_width; ++x)
         {
-            int pos = y*m_width+x;
+            int pos = y * m_width + x;
 
-            if(m_tiles[pos].m_tileType != tileType) continue;
+            if (m_tiles[pos].m_tileType != tileType) continue;
 
-            bool adjacentTiles[3][3] = {{0,0,0},{0,0,0},{0,0,0}};
+            bool adjacentTiles[3][3] = {{0, 0, 0},
+                                        {0, 0, 0},
+                                        {0, 0, 0}};
 
             /* Check for adjacent tiles of the same type */
-            if(x > 0 && y > 0)
-                adjacentTiles[0][0] = (m_tiles[(y-1)*m_width+(x-1)].m_tileType == tileType);
-            if(y > 0)
-                adjacentTiles[0][1] = (m_tiles[(y-1)*m_width+(x  )].m_tileType == tileType);
-            if(x < m_width-1 && y > 0)
-                adjacentTiles[0][2] = (m_tiles[(y-1)*m_width+(x+1)].m_tileType == tileType);
-            if(x > 0)
-                adjacentTiles[1][0] = (m_tiles[(y  )*m_width+(x-1)].m_tileType == tileType);
-            if(x < m_width-1)
-                adjacentTiles[1][2] = (m_tiles[(y  )*m_width+(x+1)].m_tileType == tileType);
-            if(x > 0 && y < m_height-1)
-                adjacentTiles[2][0] = (m_tiles[(y+1)*m_width+(x-1)].m_tileType == tileType);
-            if(y < m_height-1)
-                adjacentTiles[2][1] = (m_tiles[(y+1)*m_width+(x  )].m_tileType == tileType);
-            if(x < m_width-1 && y < m_height-1)
-                adjacentTiles[2][2] = (m_tiles[(y+1)*m_width+(x+1)].m_tileType == tileType);
+            if (x > 0 && y > 0)
+                adjacentTiles[0][0] = (m_tiles[(y - 1) * m_width + (x - 1)].m_tileType == tileType);
+            if (y > 0)
+                adjacentTiles[0][1] = (m_tiles[(y - 1) * m_width + (x)].m_tileType == tileType);
+            if (x < m_width - 1 && y > 0)
+                adjacentTiles[0][2] = (m_tiles[(y - 1) * m_width + (x + 1)].m_tileType == tileType);
+            if (x > 0)
+                adjacentTiles[1][0] = (m_tiles[(y) * m_width + (x - 1)].m_tileType == tileType);
+            if (x < m_width - 1)
+                adjacentTiles[1][2] = (m_tiles[(y) * m_width + (x + 1)].m_tileType == tileType);
+            if (x > 0 && y < m_height - 1)
+                adjacentTiles[2][0] = (m_tiles[(y + 1) * m_width + (x - 1)].m_tileType == tileType);
+            if (y < m_height - 1)
+                adjacentTiles[2][1] = (m_tiles[(y + 1) * m_width + (x)].m_tileType == tileType);
+            if (x < m_width - 1 && y < m_height - 1)
+                adjacentTiles[2][2] = (m_tiles[(y + 1) * m_width + (x + 1)].m_tileType == tileType);
 
             /* Change the tile variant depending on the tile position */
-            if(adjacentTiles[1][0] && adjacentTiles[1][2] && adjacentTiles[0][1] && adjacentTiles[2][1])
+            if (adjacentTiles[1][0] && adjacentTiles[1][2] && adjacentTiles[0][1] && adjacentTiles[2][1])
                 m_tiles[pos].m_tileVariant = 2;
-            else if(adjacentTiles[1][0] && adjacentTiles[1][2] && adjacentTiles[0][1])
+            else if (adjacentTiles[1][0] && adjacentTiles[1][2] && adjacentTiles[0][1])
                 m_tiles[pos].m_tileVariant = 7;
-            else if(adjacentTiles[1][0] && adjacentTiles[1][2] && adjacentTiles[2][1])
+            else if (adjacentTiles[1][0] && adjacentTiles[1][2] && adjacentTiles[2][1])
                 m_tiles[pos].m_tileVariant = 8;
-            else if(adjacentTiles[0][1] && adjacentTiles[2][1] && adjacentTiles[1][0])
+            else if (adjacentTiles[0][1] && adjacentTiles[2][1] && adjacentTiles[1][0])
                 m_tiles[pos].m_tileVariant = 9;
-            else if(adjacentTiles[0][1] && adjacentTiles[2][1] && adjacentTiles[1][2])
+            else if (adjacentTiles[0][1] && adjacentTiles[2][1] && adjacentTiles[1][2])
                 m_tiles[pos].m_tileVariant = 10;
-            else if(adjacentTiles[1][0] && adjacentTiles[1][2])
+            else if (adjacentTiles[1][0] && adjacentTiles[1][2])
                 m_tiles[pos].m_tileVariant = 0;
-            else if(adjacentTiles[0][1] && adjacentTiles[2][1])
+            else if (adjacentTiles[0][1] && adjacentTiles[2][1])
                 m_tiles[pos].m_tileVariant = 1;
-            else if(adjacentTiles[2][1] && adjacentTiles[1][0])
+            else if (adjacentTiles[2][1] && adjacentTiles[1][0])
                 m_tiles[pos].m_tileVariant = 3;
-            else if(adjacentTiles[0][1] && adjacentTiles[1][2])
+            else if (adjacentTiles[0][1] && adjacentTiles[1][2])
                 m_tiles[pos].m_tileVariant = 4;
-            else if(adjacentTiles[1][0] && adjacentTiles[0][1])
+            else if (adjacentTiles[1][0] && adjacentTiles[0][1])
                 m_tiles[pos].m_tileVariant = 5;
-            else if(adjacentTiles[2][1] && adjacentTiles[1][2])
+            else if (adjacentTiles[2][1] && adjacentTiles[1][2])
                 m_tiles[pos].m_tileVariant = 6;
-            else if(adjacentTiles[1][0])
+            else if (adjacentTiles[1][0])
                 m_tiles[pos].m_tileVariant = 0;
-            else if(adjacentTiles[1][2])
+            else if (adjacentTiles[1][2])
                 m_tiles[pos].m_tileVariant = 0;
-            else if(adjacentTiles[0][1])
+            else if (adjacentTiles[0][1])
                 m_tiles[pos].m_tileVariant = 1;
-            else if(adjacentTiles[2][1])
+            else if (adjacentTiles[2][1])
                 m_tiles[pos].m_tileVariant = 1;
         }
     }

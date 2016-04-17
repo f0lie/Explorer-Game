@@ -67,8 +67,6 @@ public:
     Gui(const sf::Vector2f &dimensions, int padding, bool horizontal, const GuiStyle &style,
         const std::vector<std::pair<std::string, std::string>> &entries);
 
-    sf::Vector2f getSize() const noexcept { return sf::Vector2f(m_dimensions.x, m_dimensions.y * m_entries.size()); };
-
     /*
      * Return the index of the entry the mouse is hovering over.
      * If the mouse is outside of the GUI, return -1.

@@ -27,12 +27,12 @@ public:
     unsigned int m_numSelected;
 
     unsigned int m_numRegions[1];
+
     Map() : m_tileSize(8),
             m_width(0),
             m_height(0),
             m_numRegions{1},
-            m_numSelected(0)
-    { }
+            m_numSelected(0) { }
 
     /* Load map from file constructor */
     Map(const std::string &filename, unsigned int width, unsigned int height,

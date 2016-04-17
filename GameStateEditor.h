@@ -6,8 +6,9 @@
 #include "GameState.h"
 #include "Map.h"
 
-enum class ActionState {
-    NONE, PANNING, SELECTING
+enum class ActionState
+{
+    NONE, PANNING
 };
 
 //TODO: Reduce this class because you don't need to edit the world in a RPG. We can still use some of it.
@@ -39,7 +40,7 @@ private:
     sf::Vector2i m_selectionStart;
     sf::Vector2i m_selectionEnd;
 
-    Tile* m_currentTile;
+    Tile *m_currentTile;
 };
 
 

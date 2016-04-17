@@ -10,7 +10,7 @@ Tile::Tile(unsigned int tileSize,
 {
     m_sprite.setTexture(texture);
 
-    m_animHandler.m_frameSize = sf::IntRect(0, 0, tileSize , tileSize * height);
+    m_animHandler.m_frameSize = sf::IntRect(0, 0, tileSize, tileSize * height);
     for (auto animation : animations)
     {
         m_animHandler.addAnim(animation);
@@ -43,14 +43,13 @@ std::string tileTypeToStr(TileType type)
 // TODO: Change the tiles to RPG ones
     switch (type)
     {
-        default:
-        case TileType::VOID:
-            return "Void";
         case TileType::GRASS:
             return "Flatten";
         case TileType::FOREST:
             return "Forest";
         case TileType::WATER:
             return "Water";
+        default:
+            return "Void";
     }
 }

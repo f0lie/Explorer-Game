@@ -31,10 +31,10 @@ public:
     Tile() = default;
 
     Tile(unsigned int tileSize,
-             unsigned int height,
-             sf::Texture &texture,
-             const std::vector<Animation> &animations,
-             TileType tileType);
+         unsigned int height,
+         sf::Texture &texture,
+         const std::vector<Animation> &animations,
+         TileType tileType);
 
     void draw(sf::RenderWindow &window, const float dt);
 
