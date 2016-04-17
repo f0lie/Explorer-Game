@@ -9,7 +9,7 @@
 //TODO: changes the types to the correct game
 enum class TileType
 {
-    VOID, GRASS, FOREST, WATER, RESIDENTIAL, COMMERCIAL, INDUSTRIAL, ROAD
+    VOID, GRASS, FOREST, WATER,
 };
 
 std::string tileTypeToStr(TileType type);
@@ -27,12 +27,6 @@ public:
 
     //TODO: remove these variables for the correct game type
     unsigned int m_regions[1];
-    unsigned int m_cost;
-    double m_population;
-    unsigned int m_maxPopPerLevel;
-    unsigned int m_maxLevels;
-    float m_production;
-    float m_storedGoods;
 
     Tile() = default;
 

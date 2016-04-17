@@ -5,13 +5,7 @@ Tile::Tile(unsigned int tileSize, unsigned int height, sf::Texture &texture,
            TileType tileType, unsigned int cost, unsigned int maxPopPerLevel,
            unsigned int maxLevels) : m_tileType(tileType),
                                      m_tileVariant(0),
-                                     m_regions{0},
-                                     m_cost(cost),
-                                     m_population(0.0f),
-                                     m_maxPopPerLevel(maxPopPerLevel),
-                                     m_maxLevels(maxLevels),
-                                     m_production(0.0f),
-                                     m_storedGoods(0.0f)
+                                     m_regions{0}
 {
     m_sprite.setOrigin(sf::Vector2f(0.0f, tileSize * (height - 1)));
     m_sprite.setTexture(texture);
@@ -41,18 +35,7 @@ void Tile::draw(sf::RenderWindow &window, const float dt)
 
 void Tile::update()
 {
-// TODO: Change the tiles to RPG ones
-    /* If the population is at the maximum value for the tile,
-     * there is a small chance that the tile will increase its
-     * building stage */
-    if ((m_tileType == TileType::RESIDENTIAL ||
-        m_tileType == TileType::COMMERCIAL ||
-        m_tileType == TileType::INDUSTRIAL ||
-        m_population == m_maxPopPerLevel * (m_tileVariant + 1)) &&
-        m_tileVariant < m_maxLevels)
-    {
-        if (rand() % int(1e4) < 1e2 / (m_tileVariant + 1)) { ++m_tileVariant; }
-    }
+
 }
 
 std::string tileTypeToStr(TileType type)
@@ -69,11 +52,5 @@ std::string tileTypeToStr(TileType type)
             return "Forest";
         case TileType::WATER:
             return "Water";
-        case TileType::RESIDENTIAL:
-            return "Residential Zone";
-        case TileType::COMMERCIAL:
-            return "Commercial Zone";
-        case TileType::INDUSTRIAL:
-            return "Industrial Zone";
     }
 }

@@ -33,25 +33,17 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
                 break;
             case TileType::WATER:
                 m_tiles.push_back(tileAtlas.at("water"));
-                break;
-            case TileType::RESIDENTIAL:
-                m_tiles.push_back(tileAtlas.at("residential"));
-                break;
-            case TileType::COMMERCIAL:
-                m_tiles.push_back(tileAtlas.at("commercial"));
-                break;
-            case TileType::INDUSTRIAL:
-                m_tiles.push_back(tileAtlas.at("industrial"));
-                break;
-            case TileType::ROAD:
-                m_tiles.push_back(tileAtlas.at("road"));
-                break;
         }
         Tile &tile = m_tiles.back();
+
+        // HACK:
+        double spacer_d;
+        float spacer_f;
+
         inputFile.read((char *) &tile.m_tileVariant, sizeof(int));
         inputFile.read((char *) &tile.m_regions, sizeof(int) * 1);
-        inputFile.read((char *) &tile.m_population, sizeof(double));
-        inputFile.read((char *) &tile.m_storedGoods, sizeof(float));
+        inputFile.read((char *) &spacer_d, sizeof(double));
+        inputFile.read((char *) &spacer_f, sizeof(float));
     }
 
     inputFile.close();
@@ -68,8 +60,6 @@ void Map::save(const std::string &filename)
         outputFile.write((char *) &tile.m_tileType, sizeof(int));
         outputFile.write((char *) &tile.m_tileVariant, sizeof(int));
         outputFile.write((char *) &tile.m_regions, sizeof(int) * 1);
-        outputFile.write((char *) &tile.m_population, sizeof(double));
-        outputFile.write((char *) &tile.m_storedGoods, sizeof(float));
     }
 
     outputFile.close();

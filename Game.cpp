@@ -89,31 +89,10 @@ void Game::loadTiles()
                  TileType::FOREST, 100, 0, 1);
     m_tileAtlas["water"] =
             Tile(m_tileSize, 1, m_texmgr.getRef("water"),
-                 { staticAnim,
-                   staticAnim,
-                   staticAnim },
+                 { Animation(0, 3, 0.5f),
+                   Animation(0, 3, 0.5f),
+                   Animation(0, 3, 0.5f) },
                  TileType::WATER, 0, 0, 1);
-    m_tileAtlas["residential"] =
-            Tile(m_tileSize, 2, m_texmgr.getRef("residential"),
-                 { staticAnim, staticAnim, staticAnim,
-                   staticAnim, staticAnim, staticAnim },
-                 TileType::RESIDENTIAL, 300, 50, 6);
-    m_tileAtlas["commercial"] =
-            Tile(m_tileSize, 2, m_texmgr.getRef("commercial"),
-                 { staticAnim, staticAnim, staticAnim, staticAnim},
-                 TileType::COMMERCIAL, 300, 50, 4);
-    m_tileAtlas["industrial"] =
-            Tile(m_tileSize, 2, m_texmgr.getRef("industrial"),
-                 { staticAnim, staticAnim, staticAnim,
-                   staticAnim },
-                 TileType::INDUSTRIAL, 300, 50, 4);
-    m_tileAtlas["road"] =
-            Tile(m_tileSize, 1, m_texmgr.getRef("road"),
-                 { staticAnim, staticAnim, staticAnim,
-                   staticAnim, staticAnim, staticAnim,
-                   staticAnim, staticAnim, staticAnim,
-                   staticAnim, staticAnim },
-                 TileType::ROAD, 100, 0, 1);
 }
 
 void Game::loadTextures()
@@ -122,10 +101,6 @@ void Game::loadTextures()
     m_texmgr.loadTexture("grass",         "media/grass.png");
     m_texmgr.loadTexture("forest",        "media/forest.png");
     m_texmgr.loadTexture("water",         "media/water.png");
-    m_texmgr.loadTexture("residential",   "media/residential.png");
-    m_texmgr.loadTexture("commercial",    "media/commercial.png");
-    m_texmgr.loadTexture("industrial",    "media/industrial.png");
-    m_texmgr.loadTexture("road",          "media/road.png");
 
     m_texmgr.loadTexture("background",    "media/background.png");
 }

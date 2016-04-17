@@ -48,8 +48,6 @@ void GameStateEditor::draw(const float dt)
 
 void GameStateEditor::update(const float dt)
 {
-    m_city.update(dt);
-
     /* Update the info bar at the bottom of the screen */
     // TODO: Change the infoBar to RPG elements like health or something
     m_guiSystem.at("infoBar").setEntryText(0, "Health: " + std::to_string(100));
