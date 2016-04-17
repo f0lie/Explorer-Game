@@ -89,9 +89,9 @@ void Game::loadTiles()
                  TileType::FOREST, 100, 0, 1);
     m_tileAtlas["water"] =
             Tile(m_tileSize, 1, m_texmgr.getRef("water"),
-                 { Animation(0, 3, 0.5f),
-                   Animation(0, 3, 0.5f),
-                   Animation(0, 3, 0.5f) },
+                 { staticAnim,
+                   staticAnim,
+                   staticAnim },
                  TileType::WATER, 0, 0, 1);
     m_tileAtlas["residential"] =
             Tile(m_tileSize, 2, m_texmgr.getRef("residential"),
