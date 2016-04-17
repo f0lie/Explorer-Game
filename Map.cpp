@@ -37,14 +37,8 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
         }
         Tile &tile = m_tiles.back();
 
-        // HACK:
-        double spacer_d;
-        float spacer_f;
-
         inputFile.read((char *) &tile.m_tileVariant, sizeof(int));
         inputFile.read((char *) &tile.m_regions, sizeof(int) * 1);
-        inputFile.read((char *) &spacer_d, sizeof(double));
-        inputFile.read((char *) &spacer_f, sizeof(float));
     }
 
     inputFile.close();
