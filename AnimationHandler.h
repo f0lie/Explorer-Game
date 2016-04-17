@@ -45,7 +45,7 @@ public:
     void update(const float dt);
 
     // Change the animation, resetting m_t in the process
-    void changeAnim(unsigned int animID);
+    void changeAnim(int animID);
 
 private:
     // Array of animations

@@ -6,7 +6,7 @@
 
 void AnimationHandler::update(const float dt)
 {
-    if (m_currentAnim >= m_animations.size()) { return; }
+    if (m_currentAnim >= int(m_animations.size())) { return; }
 
     float duration = m_animations[m_currentAnim].m_duration;
 
@@ -47,13 +47,13 @@ void AnimationHandler::addAnim(Animation &anim)
     m_animations.push_back(anim);
 }
 
-void AnimationHandler::changeAnim(unsigned int animID)
+void AnimationHandler::changeAnim(int animID)
 {
     /*
      * Do not change the animation if the animation is currently active or
      * the new animation doesn't exist
      */
-    if (m_currentAnim == animID || animID >= m_animations.size() || animID < 0) { return; }
+    if (m_currentAnim == animID || animID >= int(m_animations.size()) || animID < 0) { return; }
 
     // Set the current animation
     m_currentAnim = animID;
