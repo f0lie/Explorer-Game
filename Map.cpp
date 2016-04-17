@@ -87,8 +87,8 @@ void Map::draw(sf::RenderWindow &window, float dt)
              */
             // TODO: Change the view to orthographic view
             sf::Vector2f pos;
-            pos.x = (x - y) * m_tileSize + m_width * m_tileSize;
-            pos.y = (x + y) * m_tileSize * 0.5f;
+            pos.x = x * m_tileSize;
+            pos.y = y * m_tileSize;
             m_tiles[y * m_width + x].m_sprite.setPosition(pos);
 
             // TODO: Remove the highlighting
