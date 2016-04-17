@@ -50,7 +50,7 @@ void GameStateStart::handleInput()
                 m_view.setSize(event.size.width, event.size.height);
                 m_game->m_background.setPosition(m_game->m_window.mapPixelToCoords(sf::Vector2i(0, 0), m_view));
 
-                sf::Vector2f pos{event.size.width, event.size.height};
+                sf::Vector2f pos{float(event.size.width), float(event.size.height)};
                 pos *= 0.5f;
                 pos = m_game->m_window.mapPixelToCoords(sf::Vector2i(pos), m_view);
                 m_guiSystem.at("menu").setPosition(pos);

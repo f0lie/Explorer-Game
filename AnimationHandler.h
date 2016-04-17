@@ -54,7 +54,7 @@ private:
     // Current time since the animation loop started
     float m_t;
 
-    int m_currentAnim;
+    unsigned int m_currentAnim;
 };
 
 

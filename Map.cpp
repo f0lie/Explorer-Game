@@ -14,7 +14,7 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
     m_width = width;
     m_height = height;
 
-    for (int pos = 0; pos < m_width * m_height; pos++)
+    for (unsigned int pos = 0; pos < m_width * m_height; pos++)
     {
         m_resources.push_back(255);
         m_selected.push_back(0);
@@ -77,9 +77,9 @@ void Map::save(const std::string &filename)
 
 void Map::draw(sf::RenderWindow &window, float dt)
 {
-    for (int y = 0; y < m_height; y++)
+    for (unsigned int y = 0; y < m_height; y++)
     {
-        for (int x = 0; x < m_width; x++)
+        for (unsigned int x = 0; x < m_width; x++)
         {
             /*
              * Set the position of the tile in the 2d world
@@ -109,9 +109,9 @@ void Map::draw(sf::RenderWindow &window, float dt)
 
 void Map::updateDirection(TileType tileType)
 {
-    for (int y = 0; y < m_height; ++y)
+    for (unsigned int y = 0; y < m_height; ++y)
     {
-        for (int x = 0; x < m_width; ++x)
+        for (unsigned int x = 0; x < m_width; ++x)
         {
             int pos = y * m_width + x;
 
@@ -181,8 +181,8 @@ void Map::updateDirection(TileType tileType)
 void Map::depthFirstSearch(std::vector<TileType> &whitelist,
                            sf::Vector2i pos, int label, int regionType = 0)
 {
-    if (pos.x < 0 || pos.x >= m_width) { return; }
-    if (pos.y < 0 || pos.y >= m_height) { return; }
+    if (pos.x < 0 || pos.x >= int(m_width)) { return; }
+    if (pos.y < 0 || pos.y >= int(m_height)) { return; }
     if (m_tiles[pos.y * m_width + pos.x].m_regions[regionType] != 0) { return; }
 
     bool found = false;
@@ -214,9 +214,9 @@ void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType =
         tile.m_regions[regionType] = 0;
     }
 
-    for (int y = 0; y < m_height; ++y)
+    for (unsigned int y = 0; y < m_height; ++y)
     {
-        for (int x = 0; x < m_width; ++x)
+        for (unsigned int x = 0; x < m_width; ++x)
         {
             bool found = false;
             for (auto type : whitelist)

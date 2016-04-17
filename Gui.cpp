@@ -34,7 +34,7 @@ int Gui::getEntry(const sf::Vector2f mousePos)
     if (m_entries.size() == 0) { return -1; }
     if (!m_visable) { return -1; }
 
-    for (int i = 0; i < m_entries.size(); i++)
+    for (unsigned int i = 0; i < m_entries.size(); i++)
     {
         // Translate point to use the entry's local coordinates
         // Where (0,0) is the top left of the entry
@@ -52,7 +52,7 @@ int Gui::getEntry(const sf::Vector2f mousePos)
 
 void Gui::setEntryText(int entry, const std::string &text)
 {
-    if (entry < 0 || entry > m_entries.size()) { return; }
+    if (entry < 0 || entry > int(m_entries.size())) { return; }
 
     m_entries[entry].m_text.setString(text);
 }
@@ -117,7 +117,7 @@ void Gui::hide()
 
 void Gui::highlight(const int entry)
 {
-    for (int i = 0; i < m_entries.size(); ++i)
+    for (int i = 0; i < int(m_entries.size()); ++i)
     {
         if (i == entry)
         {

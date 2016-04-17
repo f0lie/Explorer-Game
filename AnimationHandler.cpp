@@ -6,7 +6,7 @@
 
 void AnimationHandler::update(const float dt)
 {
-    if (m_currentAnim >= m_animations.size() || m_currentAnim < 0)
+    if (m_currentAnim >= m_animations.size())
     { return; }
 
     float duration = m_animations[m_currentAnim].m_duration;

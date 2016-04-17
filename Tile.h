@@ -23,7 +23,7 @@ public:
     TileType m_tileType;
 
     // Tile variant, allow for different looking versions of the same tile
-    int m_tileVariant;
+    unsigned int m_tileVariant;
 
     //TODO: remove these variables for the correct game type
     unsigned int m_regions[1];

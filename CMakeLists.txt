@@ -1,7 +1,9 @@
 #Change this if you need to target a specific CMake version
 cmake_minimum_required(VERSION 3.1)
 
+# Set cmake flags
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-Wall -Werror -pedantic -Wno-reorder")
 
 # Enable debug symbols by default
 # must be done before project() statement
@@ -27,7 +29,7 @@ set(EXECUTABLE_NAME "legend_of_the_swamp")
 file(GLOB LEGEND_OF_THE_SWAMP_SRC
         "*.h"
         "*.cpp")
-add_executable(${EXECUTABLE_NAME} ${LEGEND_OF_THE_SWAMP_SRC} Map.cpp Map.h Gui.cpp Gui.h)
+add_executable(${EXECUTABLE_NAME} ${LEGEND_OF_THE_SWAMP_SRC})
 
 
 # Detect and add SFML

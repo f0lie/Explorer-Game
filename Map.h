@@ -12,21 +12,6 @@
 class Map
 {
 public:
-    Map() : m_tileSize(8),
-            m_width(0),
-            m_height(0),
-            m_numRegions{1},
-            m_numSelected(0)
-    { }
-
-    /* Load map from file constructor */
-    Map(const std::string &filename, unsigned int width, unsigned int height,
-        std::map<std::string, Tile> &tileAtlas) : m_tileSize(8),
-                                                  m_numSelected(0)
-    {
-        load(filename, width, height, tileAtlas);
-    }
-
     unsigned int m_width;
     unsigned int m_height;
 
@@ -42,6 +27,20 @@ public:
     unsigned int m_numSelected;
 
     unsigned int m_numRegions[1];
+    Map() : m_tileSize(8),
+            m_width(0),
+            m_height(0),
+            m_numRegions{1},
+            m_numSelected(0)
+    { }
+
+    /* Load map from file constructor */
+    Map(const std::string &filename, unsigned int width, unsigned int height,
+        std::map<std::string, Tile> &tileAtlas) : m_tileSize(8),
+                                                  m_numSelected(0)
+    {
+        load(filename, width, height, tileAtlas);
+    }
 
     /* Load map from disk */
     void load(const std::string &filename, unsigned int width, unsigned int height,

@@ -45,10 +45,10 @@ void Tile::update()
     /* If the population is at the maximum value for the tile,
      * there is a small chance that the tile will increase its
      * building stage */
-    if (m_tileType == TileType::RESIDENTIAL ||
+    if ((m_tileType == TileType::RESIDENTIAL ||
         m_tileType == TileType::COMMERCIAL ||
         m_tileType == TileType::INDUSTRIAL ||
-        m_population == m_maxPopPerLevel * (m_tileVariant + 1) &&
+        m_population == m_maxPopPerLevel * (m_tileVariant + 1)) &&
         m_tileVariant < m_maxLevels)
     {
         if (rand() % int(1e4) < 1e2 / (m_tileVariant + 1)) { ++m_tileVariant; }
