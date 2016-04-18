@@ -20,22 +20,26 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
     m_background.setTexture(m_texmgr.getRef("background"));
 }
 
-void Game::loadStartingEntities(){
-	player =  new Player(true, 100, 100, 0, "front.png"); //Just a test entity that uses the player front texture.
-	enemy = new Enemy(true, 1, player, 600, 485, 0, "front_e.png");
-	char moves[2] = {'c','c'};
-	enemy->setMoveSequence(moves);
-	entitiesToRender.push_back(player);
-	entitiesToRender.push_back(enemy);
-	AIsToMove.push_back(enemy);
+void Game::loadStartingEntities()
+{
+    player = new Player(true, 100, 100, 0, "front.png"); //Just a test entity that uses the player front texture.
+    enemy = new Enemy(true, 1, player, 600, 485, 0, "front_e.png");
+    char moves[2] = {'c', 'c'};
+    enemy->setMoveSequence(moves);
+    entitiesToRender.push_back(player);
+    entitiesToRender.push_back(enemy);
+    AIsToMove.push_back(enemy);
 }
 
-void Game::drawEntities(){
-	for(Entity *e : entitiesToRender){
-		sf::Sprite sprite = e->getSprite();
-		sprite.setPosition(e->getX()+3, e->getY()+9); //the +3 and +9 are so they're drawn in a more central location.
-		m_window.draw(sprite);
-	}
+void Game::drawEntities()
+{
+    for (Entity *e : entitiesToRender)
+    {
+        sf::Sprite sprite = e->getSprite();
+        sprite.setPosition(e->getX() + 3,
+                           e->getY() + 9); //the +3 and +9 are so they're drawn in a more central location.
+        m_window.draw(sprite);
+    }
 }
 
 void Game::moveAIs()
