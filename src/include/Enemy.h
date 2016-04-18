@@ -34,40 +34,19 @@ public:
 
 
     //Getters and setters
-    float getDirection()
-    {
-        return direction;
-    }
+    float getDirection() const noexcept { return direction; }
 
-    void setDirection(float val)
-    {
-        direction = val;
-    }
+    void setDirection(float val) { direction = val; }
 
-    float getDamage()
-    {
-        return damageOnContact;
-    }
+    float getDamage() const noexcept { return damageOnContact; }
 
-    void setDamage(float val)
-    {
-        damageOnContact = val;
-    }
+    void setDamage(float val) { damageOnContact = val; }
 
-    char getMove()
-    {
-        return aiMoveSequence[moveIndex];
-    }
+    char getMove() const noexcept { return aiMoveSequence[moveIndex]; }
 
-    void setMoveSequence(char *sequence)
-    {
-        aiMoveSequence = sequence;
-    }
+    void setMoveSequence(char *sequence) { aiMoveSequence = sequence; }
 
-    void setPlayer(Player *player)
-    {
-        toChase = player;
-    }
+    void setPlayer(Player *player) { toChase = player; }
 };
 
 
