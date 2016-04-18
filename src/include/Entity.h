@@ -83,6 +83,8 @@ public:
     {
         m_direction = val;
     }
+    void setHealth(int h){m_health =h;}
+    int getHealth(){return m_health;}
 };
 
 #endif // ENTITY_H

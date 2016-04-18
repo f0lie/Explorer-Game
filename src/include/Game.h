@@ -16,6 +16,9 @@
 #include "Entity.h"
 #include "Player.h"
 #include "Enemy.h"
+#include "Pickup.h"
+#include "Sword.h"
+#include "Bow.h"
 
 class GameState;
 
@@ -26,8 +29,7 @@ public:
     sf::RenderWindow m_window;
     sf::Sprite m_background;
     TextureManager m_texmgr;
-    Player *m_player; //Temporary m_player to test controls.
-    Enemy *m_enemy; //Temporary enemy to test chasing.
+    Player *m_player; //Temporary player to test controls.
 
     const static int m_tileSize{8};
 
@@ -52,6 +54,8 @@ public:
 
     void takeInput();
 
+	void checkPickups();
+	
     void changeState(std::unique_ptr<GameState> state);
 
     GameState *peekState();

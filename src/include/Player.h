@@ -54,6 +54,9 @@ public:
     {
         weaponRange = r;
     }
+    void heal(int h){
+		m_health+=h;
+	}
 
 protected:
     int floor;
