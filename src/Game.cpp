@@ -99,6 +99,7 @@ void Game::run()
         m_window.clear(sf::Color::Black);
         peekState()->draw(dt);
         moveAIs();
+        checkPickups();
         drawEntities();
         m_window.display();
     }

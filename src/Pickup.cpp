@@ -1,5 +1,5 @@
 #include "include/Pickup.h"
-
+#include <iostream>
 Pickup::Pickup(bool isSolid, Player *player, int xPosition, int yPosition, double dir, std::string fileName)
         : Entity(isSolid, xPosition, yPosition, dir, fileName)
 {
