@@ -13,45 +13,21 @@ public:
 
     //TODO update texture based on weapon damage and direction.
     //Getters and setters.
-    int Get_floor()
-    {
-        return floor;
-    }
+    int Get_floor() const noexcept { return floor; }
 
-    void Set_floor(int val)
-    {
-        floor = val;
-    }
+    void Set_floor(int val) { floor = val; }
 
-    int Get_score()
-    {
-        return score;
-    }
+    int Get_score() const noexcept { return score; }
 
-    void Set_score(int val)
-    {
-        score = val;
-    }
+    void Set_score(int val) { score = val; }
 
-    int getDamage()
-    {
-        return weaponDamage;
-    }
+    int getDamage() const noexcept { return weaponDamage; }
 
-    void setDamage(int d)
-    {
-        weaponDamage = d;
-    }
+    void setDamage(int d) { weaponDamage = d; }
 
-    int getRange()
-    {
-        return weaponRange;
-    }
+    int getRange() const noexcept { return weaponRange; }
 
-    void setRange(int r)
-    {
-        weaponRange = r;
-    }
+    void setRange(int r) { weaponRange = r; }
 
 protected:
     float direction;

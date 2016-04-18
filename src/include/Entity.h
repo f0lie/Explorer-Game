@@ -19,7 +19,7 @@ public:
 
     sf::Sprite getSprite() const noexcept { return sprite; }
 
-    void attack();
+    virtual void attack() = 0;
 
     void stepForward();
 

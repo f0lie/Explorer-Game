@@ -35,11 +35,6 @@ void Entity::stepForward()
         yPosition++;
 }
 
-void Entity::attack()
-{
-    //Is overridden by Players and Enemies anyway
-}
-
 void Entity::stepBackward()
 {
     int a = 0;
