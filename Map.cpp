@@ -3,38 +3,37 @@
 #include <fstream>
 
 #include "Map.h"
-#include "lib/csv.h"
+#include "lib/EasyBMP/EasyBMP.h"
 
 /* Load map from disk */
 // TODO: Change the binary format to a CSV/human readable format
-void Map::load(const std::string &filename, unsigned int width, unsigned int height,
-               std::map<std::string, Tile> &tileAtlas)
+void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtlas)
 {
-    io::CSVReader<2> inputFile(filename);
-    inputFile.read_header(io::ignore_extra_column, "TileType", "TileVariant");
+    BMP map_file;
+    map_file.ReadFromFile(filename.c_str());
 
-    m_width = width;
-    m_height = height;
+    m_height = unsigned(map_file.TellHeight());
+    m_width = unsigned(map_file.TellWidth());
 
-    for (unsigned int pos = 0; pos < m_width * m_height; pos++)
+    for(int y = 0; y < m_height; y++)
     {
-        unsigned int tileType;
-        unsigned int tileVariant;
-        inputFile.read_row(tileType, tileVariant);
-
-        switch (static_cast<TileType >(tileType))
+        for (int x = 0; x < m_width; x++)
         {
-            case TileType::VOID:
-            case TileType::GRASS:
-                m_tiles.push_back(tileAtlas.at("grass"));
-                break;
-            case TileType::FOREST:
-                m_tiles.push_back(tileAtlas.at("forest"));
-                break;
-            case TileType::WATER:
-                m_tiles.push_back(tileAtlas.at("water"));
+            switch(pixelToTileType(map_file(x,y)->Red, map_file(x,y)->Green, map_file(x,y)->Blue))
+            {
+                case TileType::VOID:
+                case TileType::GRASS:
+                    m_tiles.push_back(tileAtlas.at("grass"));
+                    break;
+                case TileType::FOREST:
+                    m_tiles.push_back(tileAtlas.at("forest"));
+                    break;
+                case TileType::WATER:
+                    m_tiles.push_back(tileAtlas.at("water"));
+                    m_tiles.back().m_tileVariant = 1;
+                    break;
+            }
         }
-        m_tiles.back().m_tileVariant = tileVariant;
     }
 }
 

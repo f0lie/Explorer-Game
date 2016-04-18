@@ -53,3 +53,11 @@ std::string tileTypeToStr(TileType type)
             return "Void";
     }
 }
+
+TileType pixelToTileType(unsigned char red, unsigned char green, unsigned char blue)
+{
+    if (blue == 255) { return TileType::WATER; }
+    if (green == 255) { return TileType::GRASS; }
+    if (green == 219) { return TileType::FOREST; }
+    return TileType::VOID;
+}

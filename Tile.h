@@ -13,6 +13,7 @@ enum class TileType
 };
 
 std::string tileTypeToStr(TileType type);
+TileType pixelToTileType(unsigned char red, unsigned char green, unsigned char blue);
 
 class Tile
 {

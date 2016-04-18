@@ -19,22 +19,18 @@ public:
 
     unsigned int m_tileSize;
 
-    unsigned int m_numRegions[1];
-
     Map() : m_tileSize(8),
             m_width(0),
             m_height(0) { }
 
     /* Load map from file constructor */
-    Map(const std::string &filename, unsigned int width, unsigned int height,
-        std::map<std::string, Tile> &tileAtlas) : m_tileSize(8)
+    Map(const std::string &filename, std::map<std::string, Tile> &tileAtlas) : m_tileSize(8)
     {
-        load(filename, width, height, tileAtlas);
+        load(filename, tileAtlas);
     }
 
     /* Load map from disk */
-    void load(const std::string &filename, unsigned int width, unsigned int height,
-              std::map<std::string, Tile> &tileAtlas);
+    void load(const std::string &filename, std::map<std::string, Tile> &tileAtlas);
 
     /* Save map to disk */
     void save(const std::string &filename);
