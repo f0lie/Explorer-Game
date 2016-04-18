@@ -21,7 +21,7 @@ class Enemy : public Entity
         double toPlayer();
         void attack();
         void move();
-         
+        void adjustSprite();
          
          
          //Getters and setters

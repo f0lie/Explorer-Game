@@ -23,6 +23,29 @@ double Enemy::toPlayer(){//degrees
 void Enemy::attack(){
 	//TODO
 }
+void Enemy::adjustSprite(){
+	fixDirection();
+    if(direction<=45 || direction > 315){
+		if(!tex.loadFromFile("media/right_e.png"))
+			std::cout<<"Failed to load texture right_e.png";
+		sprite.setTexture(tex);
+	}
+    else if(direction<=135){
+		if(!tex.loadFromFile("media/back_e.png"))
+			std::cout<<"Failed to load texture back_e.png";
+		sprite.setTexture(tex);
+	}
+   	else if(direction<=225){
+		if(!tex.loadFromFile("media/left_e.png"))
+			std::cout<<"Failed to load texture left_e.png";
+		sprite.setTexture(tex);
+	}
+   	else{
+		if(!tex.loadFromFile("media/front_e.png"))
+			std::cout<<"Failed to load texture front_e.png";
+		sprite.setTexture(tex);
+	}
+}
 
 void Enemy::move(){
         char curr = aiMoveSequence[moveIndex];

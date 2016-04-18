@@ -13,20 +13,24 @@ class Entity
         double direction;
         sf::Sprite sprite;
         sf::Texture tex;
+        int health;
     public:
         Entity(bool isSolid, int x, int y, double dir, std::string fileName);
-		sf::Sprite getSprite(){
-			return sprite;
-		}
 		void stepForward();
 		void stepBackward();
 		void up();
 		void down();
 		void left();
 		void right();
-		
+		virtual void adjustSprite() = 0;
+		virtual void attack() =0;
+		void fixDirection();
+		void keepOnGrid();
 		
 		//Getters and setters.
+        sf::Sprite getSprite(){
+			return sprite;
+		}
         bool getSolid() {
              return isSolid;
         }
@@ -45,7 +49,6 @@ class Entity
         void setY(int val) {
             yPosition = val;
         }
-		void attack();
 		float Get_direction() {
             return direction;
         }

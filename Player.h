@@ -2,13 +2,14 @@
 #define PLAYER_H
 
 #include "Entity.h"
-
+#include <SFML/Audio.hpp>
 
 class Player : public Entity
 {
     public:
         Player(bool isSolid, int xPosition, int yPosition, double dir, std::string fileName);
 		void attack();
+		void adjustSprite();
 		//TODO update texture based on weapon damage and direction.
 		//Getters and setters.
         int Get_floor() {
@@ -37,7 +38,6 @@ class Player : public Entity
 		}
 
     protected:
-        float direction;
         int floor;
         int score;
         int weaponRange;
