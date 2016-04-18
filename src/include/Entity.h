@@ -17,10 +17,7 @@ protected:
 public:
     Entity(bool isSolid, int x, int y, double dir, std::string fileName);
 
-    sf::Sprite getSprite()
-    {
-        return sprite;
-    }
+    sf::Sprite getSprite() const noexcept { return sprite; }
 
     void stepForward();
 
@@ -36,47 +33,23 @@ public:
 
 
     //Getters and setters.
-    bool getSolid()
-    {
-        return isSolid;
-    }
+    bool getSolid() const noexcept { return isSolid; }
 
-    void setSolid(bool val)
-    {
-        isSolid = val;
-    }
+    void setSolid(bool val) { isSolid = val; }
 
-    int getX()
-    {
-        return xPosition;
-    }
+    int getX() const noexcept { return xPosition; }
 
-    void setX(int val)
-    {
-        xPosition = val;
-    }
+    void setX(int val) { xPosition = val; }
 
-    int getY()
-    {
-        return yPosition;
-    }
+    int getY() const noexcept { return yPosition; }
 
-    void setY(int val)
-    {
-        yPosition = val;
-    }
+    void setY(int val) { yPosition = val; }
 
     void attack();
 
-    float Get_direction()
-    {
-        return direction;
-    }
+    double getDirection() const noexcept { return direction; }
 
-    void Set_direction(float val)
-    {
-        direction = val;
-    }
+    void setDirection(float val) { direction = val; }
 };
 
 #endif // ENTITY_H

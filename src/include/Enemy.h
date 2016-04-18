@@ -34,7 +34,7 @@ public:
 
 
     //Getters and setters
-    float getDirection() const noexcept { return direction; }
+    double getDirection() const noexcept { return direction; }
 
     void setDirection(float val) { direction = val; }
 

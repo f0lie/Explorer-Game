@@ -40,7 +40,7 @@ void Enemy::move()
             break;
             case 'C':
                 case 'c':
-                    Set_direction(toPlayer());
+                    setDirection(toPlayer());
             stepForward();
             break;
             case 'U':
