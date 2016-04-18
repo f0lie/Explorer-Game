@@ -26,15 +26,15 @@ public:
     sf::Sprite m_background;
     TextureManager m_texmgr;
     Player *player; //Temporary player to test controls.
-	Enemy *enemy; //Temporary enemy to test chasing.
-	
+    Enemy *enemy; //Temporary enemy to test chasing.
+
     const static int m_tileSize{8};
 
     //TODO: type alias for tileAtlas
     std::map<std::string, Tile> m_tileAtlas;
     std::map<std::string, GuiStyle> m_stylesheets;
     std::map<std::string, sf::Font> m_fonts;
-	
+
     Game();
 
     /*
@@ -42,15 +42,21 @@ public:
      * Stacking the states allow swap states easily like between Pause and Start.
      */
     std::stack<std::unique_ptr<GameState>> m_states;
-	void loadStartingEntities();
+
+    void loadStartingEntities();
+
     void pushState(std::unique_ptr<GameState> state);
 
     void popState();
-	void takeInput();
+
+    void takeInput();
+
     void changeState(std::unique_ptr<GameState> state);
 
     GameState *peekState();
-	void moveAIs();
+
+    void moveAIs();
+
     void run();
 
 private:
@@ -61,6 +67,7 @@ private:
     void loadStylesheets();
 
     void loadFonts();
+
     void drawEntities();
 };
 
