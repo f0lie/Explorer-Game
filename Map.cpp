@@ -14,9 +14,9 @@ void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtl
     m_height = unsigned(map_file.TellHeight());
     m_width = unsigned(map_file.TellWidth());
 
-    for (int y = 0; y < m_height; y++)
+    for (unsigned int y = 0; y < m_height; y++)
     {
-        for (int x = 0; x < m_width; x++)
+        for (unsigned int x = 0; x < m_width; x++)
         {
             switch (pixelToTileType(map_file(x, y)->Red, map_file(x, y)->Green, map_file(x, y)->Blue))
             {

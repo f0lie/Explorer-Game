@@ -19,7 +19,7 @@ GameStateEditor::GameStateEditor(Game *game) : GameState(game),
     m_gameView.setCenter(pos);
 
     // Centre the camera on the map
-    sf::Vector2f centre(m_map.m_width * 0.5, m_map.m_height * 0.5);
+    sf::Vector2f centre(float(m_map.m_width * 0.5), float(m_map.m_height * 0.5));
     centre *= float(m_map.m_tileSize);
     m_gameView.setCenter(centre);
 

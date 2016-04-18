@@ -13,6 +13,7 @@ enum class TileType
 };
 
 std::string tileTypeToStr(TileType type);
+
 constexpr TileType pixelToTileType(unsigned char red, unsigned char green, unsigned char blue)
 {
     if (blue == 255) { return TileType::WATER; }
