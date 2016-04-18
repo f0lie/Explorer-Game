@@ -19,6 +19,8 @@ public:
 
     sf::Sprite getSprite() const noexcept { return sprite; }
 
+    void attack();
+
     void stepForward();
 
     void stepBackward();
@@ -29,8 +31,8 @@ public:
 
     void left();
 
-    void right();
 
+    void right();
 
     //Getters and setters.
     bool getSolid() const noexcept { return isSolid; }
@@ -44,8 +46,6 @@ public:
     int getY() const noexcept { return yPosition; }
 
     void setY(int val) { yPosition = val; }
-
-    void attack();
 
     double getDirection() const noexcept { return direction; }
 
