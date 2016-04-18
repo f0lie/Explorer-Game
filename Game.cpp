@@ -2,6 +2,8 @@
 #include "GameState.h"
 
 constexpr unsigned int winWidth{800}, winHeight{600};
+std::vector<Entity*> entitiesToRender;
+std::vector<Enemy*> AIsToMove;
 
 Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
                m_texmgr(),
@@ -11,10 +13,33 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
     loadTiles();
     loadFonts();
     loadStylesheets();
-
+	loadStartingEntities();
+	
     m_window.setFramerateLimit(60);
 
     m_background.setTexture(m_texmgr.getRef("background"));
+}
+void Game::loadStartingEntities(){
+	player =  new Player(true, 1, 1, 0, "front.png"); //Just a test entity that uses the player front texture.
+	enemy = new Enemy(true, 1, player, 700, 585, 0, "front_e.png");
+	char moves[6] = {'c','c','c','c','c','c'};
+	enemy->setMoveSequence(moves);
+	entitiesToRender.push_back(player);
+	entitiesToRender.push_back(enemy);
+	AIsToMove.push_back(enemy);
+}
+
+void Game::drawEntities(){
+	for(Entity *e : entitiesToRender){
+		sf::Sprite sprite = e->getSprite();
+		sprite.setPosition(e->getX(), e->getY());
+		m_window.draw(sprite);
+	}
+}
+void Game::moveAIs(){
+	for(Enemy *e : AIsToMove){
+		e->move();
+	}
 }
 
 void Game::run()
@@ -26,6 +51,7 @@ void Game::run()
 	music.play();
     while (m_window.isOpen())
     {
+		takeInput();
         sf::Time elapsed{clock.restart()};
         float dt{elapsed.asSeconds()};
 
@@ -36,15 +62,35 @@ void Game::run()
 
         peekState()->handleInput();
         peekState()->update(dt);
-
         m_window.clear(sf::Color::Black);
-
         peekState()->draw(dt);
-
+        moveAIs();
+        drawEntities();
         m_window.display();
     }
 }
 
+void Game::takeInput(){
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::W)){
+	player->up();
+}
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+{
+	player->left();
+}
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
+{
+	player->down();
+}
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+{
+	player->right();
+}
+if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+{
+	player->attack();
+}	
+}
 
 void Game::pushState(std::unique_ptr<GameState> state)
 {
