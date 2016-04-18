@@ -21,9 +21,12 @@ void Game::run()
 {
     sf::Clock clock;
     sf::Music music;
-    if(!music.openFromFile("media/Fade.ogg"))
-		std::cout<<"Missing audio file Fade.ogg!";
-	music.play();
+
+    if (!music.openFromFile("media/Fade.ogg"))
+        std::cout << "Missing audio file Fade.ogg!";
+
+    music.play();
+
     while (m_window.isOpen())
     {
         sf::Time elapsed{clock.restart()};
