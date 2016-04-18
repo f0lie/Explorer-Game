@@ -1,11 +1,14 @@
 #include "GameState.h"
 #include "GameStateEditor.h"
 
+// TODO: Entire class is almost useless for RPG game. However methods here are useful for other things.
 GameStateEditor::GameStateEditor(Game *game) : GameState(game),
-                                               m_map("big_map.bmp", game->m_tileAtlas),
+                                               m_map("map.dat", 64, 64, game->m_tileAtlas),
                                                m_guiView(),
                                                m_gameView(),
                                                m_zoomLevel(1.0f),
+                                               m_selectionStart(0, 0),
+                                               m_selectionEnd(0, 0),
                                                m_currentTile(&game->m_tileAtlas.at("grass"))
 {
     sf::Vector2f pos{m_game->m_window.getSize()};
@@ -16,7 +19,7 @@ GameStateEditor::GameStateEditor(Game *game) : GameState(game),
     m_gameView.setCenter(pos);
 
     // Centre the camera on the map
-    sf::Vector2f centre(float(m_map.m_width * 0.5), float(m_map.m_height * 0.5));
+    sf::Vector2f centre(m_map.m_width * 0.5, m_map.m_height * 0.5);
     centre *= float(m_map.m_tileSize);
     m_gameView.setCenter(centre);
 

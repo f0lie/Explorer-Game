@@ -3,48 +3,58 @@
 #include <fstream>
 
 #include "Map.h"
-#include "lib/EasyBMP/EasyBMP.h"
 
 /* Load map from disk */
-void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtlas)
+// TODO: Change the binary format to a CSV/human readable format
+void Map::load(const std::string &filename, unsigned int width, unsigned int height,
+               std::map<std::string, Tile> &tileAtlas)
 {
-    BMP map_file;
-    map_file.ReadFromFile(filename.c_str());
+    std::ifstream inputFile;
+    inputFile.open(filename, std::ios::in | std::ios::binary);
 
-    m_height = unsigned(map_file.TellHeight());
-    m_width = unsigned(map_file.TellWidth());
+    m_width = width;
+    m_height = height;
 
-    for (unsigned int y = 0; y < m_height; y++)
+    for (unsigned int pos = 0; pos < m_width * m_height; pos++)
     {
-        for (unsigned int x = 0; x < m_width; x++)
+        m_resources.push_back(255);
+        m_selected.push_back(0);
+
+        TileType tileType;
+        inputFile.read((char *) &tileType, sizeof(int));
+        // TODO: Change to RPG types
+        switch (tileType)
         {
-            switch (pixelToTileType(map_file(x, y)->Red, map_file(x, y)->Green, map_file(x, y)->Blue))
-            {
-                case TileType::VOID:
-                case TileType::GRASS:
-                    m_tiles.push_back(tileAtlas.at("grass"));
-                    break;
-                case TileType::FOREST:
-                    m_tiles.push_back(tileAtlas.at("forest"));
-                    break;
-                case TileType::WATER:
-                    m_tiles.push_back(tileAtlas.at("water"));
-                    m_tiles.back().m_tileVariant = 1;
-                    break;
-            }
+            case TileType::VOID:
+            case TileType::GRASS:
+                m_tiles.push_back(tileAtlas.at("grass"));
+                break;
+            case TileType::FOREST:
+                m_tiles.push_back(tileAtlas.at("forest"));
+                break;
+            case TileType::WATER:
+                m_tiles.push_back(tileAtlas.at("water"));
         }
+        Tile &tile = m_tiles.back();
+
+        inputFile.read((char *) &tile.m_tileVariant, sizeof(int));
+        inputFile.read((char *) &tile.m_regions, sizeof(int) * 1);
     }
+
+    inputFile.close();
 }
 
+// TODO: Save in a human readable format
 void Map::save(const std::string &filename)
 {
-    std::ofstream outputFile(filename);
-
-    outputFile << "TileType, TileVariant" << std::endl;
+    std::ofstream outputFile;
+    outputFile.open(filename, std::ios::out | std::ios::binary);
 
     for (auto tile : m_tiles)
     {
-        outputFile << int(tile.m_tileType) << "," << tile.m_tileVariant << std::endl;
+        outputFile.write((char *) &tile.m_tileType, sizeof(int));
+        outputFile.write((char *) &tile.m_tileVariant, sizeof(int));
+        outputFile.write((char *) &tile.m_regions, sizeof(int) * 1);
     }
 
     outputFile.close();
@@ -136,4 +146,66 @@ void Map::updateDirection(TileType tileType)
                 m_tiles[pos].m_tileVariant = 1;
         }
     }
+}
+
+// depthFirstSearch and findConnectedRegions are designed for citybuilder tiles.
+// Some tiles depend on the tiles around it so thats why they exist.
+
+// TODO: Possiblely remove this for RPG game
+void Map::depthFirstSearch(std::vector<TileType> &whitelist,
+                           sf::Vector2i pos, int label, int regionType = 0)
+{
+    if (pos.x < 0 || pos.x >= int(m_width)) { return; }
+    if (pos.y < 0 || pos.y >= int(m_height)) { return; }
+    if (m_tiles[pos.y * m_width + pos.x].m_regions[regionType] != 0) { return; }
+
+    bool found = false;
+    for (auto type : whitelist)
+    {
+        if (type == m_tiles[pos.y * m_width + pos.x].m_tileType)
+        {
+            found = true;
+            break;
+        }
+    }
+    if (!found) { return; }
+
+    m_tiles[pos.y * m_width + pos.x].m_regions[regionType] = label;
+
+    depthFirstSearch(whitelist, pos + sf::Vector2i(-1, 0), label, regionType);
+    depthFirstSearch(whitelist, pos + sf::Vector2i(0, 1), label, regionType);
+    depthFirstSearch(whitelist, pos + sf::Vector2i(1, 0), label, regionType);
+    depthFirstSearch(whitelist, pos + sf::Vector2i(0, -1), label, regionType);
+}
+
+// TODO: Possiblely remove this for RPG game
+void Map::findConnectedRegions(std::vector<TileType> whitelist, int regionType = 0)
+{
+    int regions = 1;
+
+    for (auto &tile : m_tiles)
+    {
+        tile.m_regions[regionType] = 0;
+    }
+
+    for (unsigned int y = 0; y < m_height; ++y)
+    {
+        for (unsigned int x = 0; x < m_width; ++x)
+        {
+            bool found = false;
+            for (auto type : whitelist)
+            {
+                if (type == m_tiles[y * m_width + x].m_tileType)
+                {
+                    found = true;
+                    break;
+                }
+            }
+            if (m_tiles[y * m_width + x].m_regions[regionType] == 0 && found)
+            {
+                depthFirstSearch(whitelist, sf::Vector2i(x, y), regions++, regionType);
+            }
+        }
+    }
+    m_numRegions[regionType] = regions;
 }

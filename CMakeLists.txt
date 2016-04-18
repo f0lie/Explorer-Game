@@ -29,10 +29,7 @@ set(EXECUTABLE_NAME "legend_of_the_swamp")
 file(GLOB LEGEND_OF_THE_SWAMP_SRC
         "*.h"
         "*.cpp")
-file(GLOB LIB_SRC
-        "lib/EasyBMP/*.h"
-        "lib/EasyBMP/*.cpp")
-add_executable(${EXECUTABLE_NAME} ${LEGEND_OF_THE_SWAMP_SRC} ${LIB_SRC})
+add_executable(${EXECUTABLE_NAME} ${LEGEND_OF_THE_SWAMP_SRC})
 
 
 # Detect and add SFML
