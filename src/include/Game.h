@@ -26,8 +26,8 @@ public:
     sf::RenderWindow m_window;
     sf::Sprite m_background;
     TextureManager m_texmgr;
-    Player *player; //Temporary player to test controls.
-    Enemy *enemy; //Temporary enemy to test chasing.
+    Player *m_player; //Temporary m_player to test controls.
+    Enemy *m_enemy; //Temporary enemy to test chasing.
 
     const static int m_tileSize{8};
 

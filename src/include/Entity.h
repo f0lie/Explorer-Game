@@ -6,15 +6,15 @@
 #include <SFML/Graphics.hpp>
 
 class Entity
-{   //entities should be used for item pickups, rocks, player characters, enemies, etc.  Anything that isn't map but is visible.
+{   //entities should be used for item pickups, rocks, m_player characters, enemies, etc.  Anything that isn't map but is visible.
 protected:
-    bool isSolid;
-    int xPosition;
-    int yPosition;
-    double direction;
-    sf::Sprite sprite;
-    sf::Texture tex;
-    int health;
+    bool m_isSolid;
+    int m_xPosition;
+    int m_yPosition;
+    double m_direction;
+    sf::Sprite m_sprite;
+    sf::Texture m_tex;
+    int m_health;
 public:
     Entity(bool isSolid, int x, int y, double dir, std::string fileName);
 
@@ -41,47 +41,47 @@ public:
     //Getters and setters.
     sf::Sprite getSprite()
     {
-        return sprite;
+        return m_sprite;
     }
 
     bool getSolid()
     {
-        return isSolid;
+        return m_isSolid;
     }
 
     void setSolid(bool val)
     {
-        isSolid = val;
+        m_isSolid = val;
     }
 
     int getX()
     {
-        return xPosition;
+        return m_xPosition;
     }
 
     void setX(int val)
     {
-        xPosition = val;
+        m_xPosition = val;
     }
 
     int getY()
     {
-        return yPosition;
+        return m_yPosition;
     }
 
     void setY(int val)
     {
-        yPosition = val;
+        m_yPosition = val;
     }
 
     float Get_direction()
     {
-        return direction;
+        return m_direction;
     }
 
     void Set_direction(float val)
     {
-        direction = val;
+        m_direction = val;
     }
 };
 

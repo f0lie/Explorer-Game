@@ -22,13 +22,13 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
 
 void Game::loadStartingEntities()
 {
-    player = new Player(true, 100, 100, 0, "front.png"); //Just a test entity that uses the player front texture.
-    enemy = new Enemy(true, 1, player, 600, 485, 0, "front_e.png");
+    m_player = new Player(true, 100, 100, 0, "front.png"); //Just a test entity that uses the m_player front texture.
+    m_enemy = new Enemy(true, 1, m_player, 600, 485, 0, "front_e.png");
     char moves[2] = {'c', 'c'};
-    enemy->setMoveSequence(moves);
-    entitiesToRender.push_back(player);
-    entitiesToRender.push_back(enemy);
-    AIsToMove.push_back(enemy);
+    m_enemy->setMoveSequence(moves);
+    entitiesToRender.push_back(m_player);
+    entitiesToRender.push_back(m_enemy);
+    AIsToMove.push_back(m_enemy);
 }
 
 void Game::drawEntities()
@@ -85,23 +85,23 @@ void Game::takeInput()
 {
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
     {
-        player->up();
+        m_player->up();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
     {
-        player->left();
+        m_player->left();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
     {
-        player->down();
+        m_player->down();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
     {
-        player->right();
+        m_player->right();
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
     {
-        player->attack();
+        m_player->attack();
     }
 }
 

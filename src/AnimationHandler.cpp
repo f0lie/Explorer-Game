@@ -23,7 +23,7 @@ void AnimationHandler::update(const float dt)
         frame %= m_animations[m_currentAnim].getLength();
 
         /*
-         * Set the sprite to the new frame.
+         * Set the m_sprite to the new frame.
          * Width the frame number.
          * Height is the animation.
          */

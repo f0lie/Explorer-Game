@@ -19,13 +19,13 @@ Tile::Tile(unsigned int tileSize,
 
 void Tile::draw(sf::RenderWindow &window, const float dt)
 {
-    // Change the sprite to reflect the tile variant
+    // Change the m_sprite to reflect the tile variant
     m_animHandler.changeAnim(m_tileVariant);
 
     // Update the animation
     m_animHandler.update(dt);
 
-    // Update the sprite
+    // Update the m_sprite
     m_sprite.setTextureRect(m_animHandler.m_bounds);
 
     // Draw the tile

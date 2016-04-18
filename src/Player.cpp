@@ -8,7 +8,7 @@ Player::Player(bool isSolid, int xPosition, int yPosition, double dir, std::stri
     weaponRange = 1;
     floor = 1;
     score = 0;
-    health = 100;
+    m_health = 100;
 }
 
 void Player::attack()
@@ -25,13 +25,13 @@ void Player::attack()
 void Player::adjustSprite()
 {
     fixDirection();
-    direction = (int) direction % 360;
+    m_direction = (int) m_direction % 360;
     std::string fileName = "media/";
-    if (direction <= 45 || direction > 315)
+    if (m_direction <= 45 || m_direction > 315)
         fileName += "right";
-    else if (direction <= 135)
+    else if (m_direction <= 135)
         fileName += "back";
-    else if (direction <= 225)
+    else if (m_direction <= 225)
         fileName += "left";
     else
         fileName += "front";
@@ -40,7 +40,7 @@ void Player::adjustSprite()
     else if (weaponDamage > 5) //Change to if(activeSlot == sword) later?
         fileName += "_s";
     fileName += ".png";
-    if (!tex.loadFromFile(fileName))
+    if (!m_tex.loadFromFile(fileName))
         std::cout << "Failed to load texture " + fileName;
-    sprite.setTexture(tex);
+    m_sprite.setTexture(m_tex);
 }
