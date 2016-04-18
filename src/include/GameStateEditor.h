@@ -32,9 +32,6 @@ private:
 
     Map m_map;
 
-    sf::Vector2i m_panningAnchor;
-    float m_zoomLevel;
-
     Tile *m_currentTile;
 };
 

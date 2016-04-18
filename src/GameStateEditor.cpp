@@ -5,7 +5,6 @@ GameStateEditor::GameStateEditor(Game *game) : GameState(game),
                                                m_map("big_map.bmp", game->m_tileAtlas),
                                                m_guiView(),
                                                m_gameView(),
-                                               m_zoomLevel(1.0f),
                                                m_currentTile(&game->m_tileAtlas.at("grass"))
 {
     sf::Vector2f pos{m_game->m_window.getSize()};
@@ -68,7 +67,6 @@ void GameStateEditor::handleInput()
             {
                 // Change the view so it matches the resized window
                 m_gameView.setSize(event.size.width, event.size.height);
-                m_gameView.zoom(m_zoomLevel);
 
                 m_guiView.setSize(event.size.width, event.size.height);
 
