@@ -2,10 +2,11 @@
 #define LEGEND_OF_THE_SWAMP_GAME_H
 
 #include <SFML/Graphics.hpp>
-
+#include <SFML/Audio.hpp>
 #include <stack>
 #include <memory>
 #include <map>
+#include <iostream>
 
 #include "Gui.h"
 #include "TextureManager.h"
