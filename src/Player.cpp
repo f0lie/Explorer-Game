@@ -15,7 +15,7 @@ void Player::attack()
 {
     //TODO implement damage functions.
     sf::SoundBuffer buffer;
-    if (!buffer.loadFromFile("sword_miss.wav"))
+    if (!buffer.loadFromFile("media/sword_miss.wav"))
         std::cout << "can't find sword_miss.wav";
     sf::Sound sound;
     sound.setBuffer(buffer);

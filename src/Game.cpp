@@ -4,6 +4,7 @@
 constexpr unsigned int winWidth{800}, winHeight{600};
 std::vector<Entity *> entitiesToRender;
 std::vector<Enemy *> AIsToMove;
+std::vector<Pickup *> pickups;
 
 Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
                m_texmgr(),
@@ -23,22 +24,34 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
 void Game::loadStartingEntities()
 {
     m_player = new Player(true, 100, 100, 0, "front.png"); //Just a test entity that uses the m_player front texture.
-    m_enemy = new Enemy(true, 1, m_player, 600, 485, 0, "front_e.png");
+    Enemy *m_enemy = new Enemy(true, 1, m_player, 600, 485, 0.0, "front_e.png");
+    Sword *m_sword = new Sword(true, m_player, 300, 215, 0.0, "sword.png");
+    Bow *m_bow = new Bow(true, m_player, 200, 215, 0.0, "bow.png");
     char moves[2] = {'c', 'c'};
     m_enemy->setMoveSequence(moves);
     entitiesToRender.push_back(m_player);
     entitiesToRender.push_back(m_enemy);
+    entitiesToRender.push_back(m_sword);
+    entitiesToRender.push_back(m_bow);
+    
     AIsToMove.push_back(m_enemy);
+    
+    pickups.push_back(m_sword);
+    pickups.push_back(m_bow);
 }
 
 void Game::drawEntities()
 {
     for (Entity *e : entitiesToRender)
     {
+		if(e->getHealth() <= 0)
+			entitiesToRender.erase(std::remove(entitiesToRender.begin(), entitiesToRender.end(), e), entitiesToRender.end()); //Shitty line of code that removes e from the vector.
+        else{
         sf::Sprite sprite = e->getSprite();
         sprite.setPosition(e->getX() + 3,
                            e->getY() + 9); //the +3 and +9 are so they're drawn in a more central location.
         m_window.draw(sprite);
+		}
     }
 }
 
@@ -47,6 +60,16 @@ void Game::moveAIs()
     for (Enemy *e : AIsToMove)
     {
         e->move();
+    }
+}
+void Game::checkPickups()
+{
+    for (Pickup *e : pickups)
+    {
+		if(e->getHealth() <= 0)
+			pickups.erase(std::remove(pickups.begin(), pickups.end(), e), pickups.end()); //Shitty line of code that removes e from the vector.
+        else
+			e->checkPickup();
     }
 }
 
