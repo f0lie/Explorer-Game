@@ -2,40 +2,47 @@
 #define PLAYER_H
 
 #include "Entity.h"
-
+#include <SFML/Audio.hpp>
 
 class Player : public Entity
 {
-protected:
-    int m_floor;
-    int m_score;
-    int m_weaponRange;
-    int m_weaponDamage;
-    //TODO Represent list of items (inventory) with a vector?  Do we need consumable items/weapon switching?
-public:
-    Player(bool isSolid, int xPosition, int yPosition, double dir, std::string fileName);
+    public:
+        Player(bool isSolid, int xPosition, int yPosition, double dir, std::string fileName);
+		void attack();
+		void adjustSprite();
+		//TODO update texture based on weapon damage and direction.
+		//Getters and setters.
+        int Get_floor() {
+            return floor;
+        }
+        void Set_floor(int val) {
+            floor = val;
+        }
+        int Get_score() {
+            return score;
+        }
+        void Set_score(int val) {
+            score = val;
+        }
+        int getDamage(){
+			return weaponDamage;
+		}
+		void setDamage(int d){
+			weaponDamage =d;
+		}
+		int getRange(){
+			return weaponRange;
+		}
+		void setRange(int r){
+			weaponRange =r;
+		}
 
-    void attack();
-
-    //TODO update texture based on weapon damage and direction.
-    //Getters and setters.
-    int Get_floor() const noexcept { return m_floor; }
-
-    void Set_floor(int val) { m_floor = val; }
-
-    int Get_score() const noexcept { return m_score; }
-
-    void Set_score(int val) { m_score = val; }
-
-    int getDamage() const noexcept { return m_weaponDamage; }
-
-    void setDamage(int d) { m_weaponDamage = d; }
-
-    int getRange() const noexcept { return m_weaponRange; }
-
-    void setRange(int r) { m_weaponRange = r; }
-
-
+    protected:
+        int floor;
+        int score;
+        int weaponRange;
+        int weaponDamage;
+        //TODO Represent list of items (inventory) with a vector?  Do we need consumable items/weapon switching?
 };
 
 #endif // PLAYER_H
