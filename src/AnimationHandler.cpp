@@ -2,7 +2,7 @@
 // Created by alex on 4/13/16.
 //
 
-#include "AnimationHandler.h"
+#include "include/AnimationHandler.h"
 
 void AnimationHandler::update(const float dt)
 {

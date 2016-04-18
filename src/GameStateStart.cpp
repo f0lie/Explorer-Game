@@ -1,5 +1,5 @@
-#include "GameStateStart.h"
-#include "GameStateEditor.h"
+#include "include/GameStateStart.h"
+#include "include/GameStateEditor.h"
 
 GameStateStart::GameStateStart(Game *game) : GameState(game)
 {

@@ -2,8 +2,8 @@
 
 #include <fstream>
 
-#include "Map.h"
-#include "lib/EasyBMP/EasyBMP.h"
+#include "include/Map.h"
+#include "../lib/EasyBMP/EasyBMP.h"
 
 /* Load map from disk */
 void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtlas)

@@ -1,4 +1,4 @@
-#include "Tile.h"
+#include "include/Tile.h"
 
 Tile::Tile(unsigned int tileSize,
            unsigned int height,

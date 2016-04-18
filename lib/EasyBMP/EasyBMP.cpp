@@ -473,7 +473,7 @@ bool BMP::WriteToFile( const char* FileName )
  
  double dTotalFileSize = 14 + 40 + dPaletteSize + dTotalPixelBytes;
  
- // write the file header 
+ // write the file include
  
  BMFH bmfh;
  bmfh.bfSize = (ebmpDWORD) dTotalFileSize; 
@@ -490,7 +490,7 @@ bool BMP::WriteToFile( const char* FileName )
  fwrite( (char*) &(bmfh.bfReserved2) , sizeof(ebmpWORD) , 1 , fp );
  fwrite( (char*) &(bmfh.bfOffBits) , sizeof(ebmpDWORD) , 1 , fp );
  
- // write the info header 
+ // write the info include
  
  BMIH bmih;
  bmih.biSize = 40;
@@ -694,7 +694,7 @@ bool BMP::ReadFromFile( const char* FileName )
   return false;
  }
  
- // read the file header 
+ // read the file include
  
  BMFH bmfh;
  bool NotCorrupted = true;
@@ -727,7 +727,7 @@ bool BMP::ReadFromFile( const char* FileName )
  if( IsBigEndian() ) 
  { bmfh.SwitchEndianess(); }
   
- // read the info header
+ // read the info include
 
  BMIH bmih; 
  
@@ -747,7 +747,7 @@ bool BMP::ReadFromFile( const char* FileName )
  if( IsBigEndian() ) 
  { bmih.SwitchEndianess(); }
 
- // a safety catch: if any of the header information didn't read properly, abort
+ // a safety catch: if any of the include information didn't read properly, abort
  // future idea: check to see if at least most is self-consistent
   
  if( !NotCorrupted )

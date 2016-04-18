@@ -1,5 +1,5 @@
-#include "GameState.h"
-#include "GameStateEditor.h"
+#include "include/GameState.h"
+#include "include/GameStateEditor.h"
 
 GameStateEditor::GameStateEditor(Game *game) : GameState(game),
                                                m_map("big_map.bmp", game->m_tileAtlas),

@@ -1,8 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-#include "Game.h"
-#include "GameStateStart.h"
+#include "include/Game.h"
+#include "include/GameStateStart.h"
 
 /*
  * Mainly following this guide

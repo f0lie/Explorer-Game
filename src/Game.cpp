@@ -1,5 +1,5 @@
-#include "Game.h"
-#include "GameState.h"
+#include "include/Game.h"
+#include "include/GameState.h"
 
 constexpr unsigned int winWidth{800}, winHeight{600};
 

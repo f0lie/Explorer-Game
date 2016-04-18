@@ -1,8 +1,4 @@
-//
-// Created by alex on 4/15/16.
-//
-
-#include "Gui.h"
+#include "include/Gui.h"
 
 Gui::Gui(const sf::Vector2f &dimensions, int padding, bool horizontal, const GuiStyle &style,
          const std::vector<std::pair<std::string, std::string>> &entries) : m_visable(false),
