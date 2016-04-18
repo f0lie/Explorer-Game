@@ -3,12 +3,12 @@
 Entity::Entity(bool isSolid, int x, int y, double dir, std::string fileName)
 {
     isSolid = isSolid;
-    xPosition = x;
-    yPosition = y;
-    direction = dir;
-    if (!tex.loadFromFile("media/" + fileName))
+    m_xPosition = x;
+    m_yPosition = y;
+    m_direction = dir;
+    if (!m_tex.loadFromFile("media/" + fileName))
         std::cout << "Failed to load texture " + fileName;
-    sprite.setTexture(tex);
+    m_sprite.setTexture(m_tex);
 }
 
 void Entity::stepForward()
@@ -16,23 +16,23 @@ void Entity::stepForward()
     int a = 0;
     if (rand() % 2)a++;
     else a--;
-    if (direction == 45)
-        direction += a;
-    if (direction == 135)
-        direction += a;
-    if (direction == 225)
-        direction += a;
-    if (direction == 315)
-        direction += a; //Just some stupid tiebreaker code for 45 degree angle decisions.
-    direction = (int) direction % 360;
-    if (direction <= 45 || direction > 315)
-        xPosition++;
-    else if (direction <= 135)
-        yPosition--;
-    else if (direction <= 225)
-        xPosition--;
-    else if (direction <= 315)
-        yPosition++;
+    if (m_direction == 45)
+        m_direction += a;
+    if (m_direction == 135)
+        m_direction += a;
+    if (m_direction == 225)
+        m_direction += a;
+    if (m_direction == 315)
+        m_direction += a; //Just some stupid tiebreaker code for 45 degree angle decisions.
+    m_direction = (int) m_direction % 360;
+    if (m_direction <= 45 || m_direction > 315)
+        m_xPosition++;
+    else if (m_direction <= 135)
+        m_yPosition--;
+    else if (m_direction <= 225)
+        m_xPosition--;
+    else if (m_direction <= 315)
+        m_yPosition++;
 }
 
 void Entity::stepBackward()
@@ -40,46 +40,46 @@ void Entity::stepBackward()
     int a = 0;
     if (rand() % 2)a++;
     else a--;
-    if (direction == 45)
-        direction += a;
-    if (direction == 135)
-        direction += a;
-    if (direction == 225)
-        direction += a;
-    if (direction == 315)
-        direction += a; //Just some stupid tiebreaker code for 45 degree angle decisions.
-    direction = (int) direction % 360;
-    if (direction <= 45 || direction > 315)
-        xPosition--;
-    else if (direction <= 135)
-        yPosition++;
-    else if (direction <= 225)
-        xPosition++;
-    else if (direction <= 315)
-        yPosition--;
+    if (m_direction == 45)
+        m_direction += a;
+    if (m_direction == 135)
+        m_direction += a;
+    if (m_direction == 225)
+        m_direction += a;
+    if (m_direction == 315)
+        m_direction += a; //Just some stupid tiebreaker code for 45 degree angle decisions.
+    m_direction = (int) m_direction % 360;
+    if (m_direction <= 45 || m_direction > 315)
+        m_xPosition--;
+    else if (m_direction <= 135)
+        m_yPosition++;
+    else if (m_direction <= 225)
+        m_xPosition++;
+    else if (m_direction <= 315)
+        m_yPosition--;
 }
 
 
 void Entity::up()
 {
-    direction = 90.0;
-    yPosition--;
+    m_direction = 90.0;
+    m_yPosition--;
 }
 
 void Entity::down()
 {
-    direction = 270.0;
-    yPosition++;
+    m_direction = 270.0;
+    m_yPosition++;
 }
 
 void Entity::left()
 {
-    direction = 180.0;
-    xPosition--;
+    m_direction = 180.0;
+    m_xPosition--;
 }
 
 void Entity::right()
 {
-    direction = 0.0;
-    xPosition++;
+    m_direction = 0.0;
+    m_xPosition++;
 }

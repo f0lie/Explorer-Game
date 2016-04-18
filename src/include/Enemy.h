@@ -12,10 +12,10 @@
 class Enemy : public Entity
 {
 protected:
-    float damageOnContact;
-    char *aiMoveSequence;
-    int moveIndex; //index of AI move sequence.
-    Player *toChase;
+    float m_damageOnContact;
+    char *m_aiMoveSequence;
+    int m_moveIndex; //index of AI move sequence.
+    Player *m_toChase;
 public:
     Enemy(bool isSolid,
           int damage,
@@ -34,19 +34,19 @@ public:
 
 
     //Getters and setters
-    double getDirection() const noexcept { return direction; }
+    double getDirection() const noexcept { return m_direction; }
 
-    void setDirection(float val) { direction = val; }
+    void setDirection(float val) { m_direction = val; }
 
-    float getDamage() const noexcept { return damageOnContact; }
+    float getDamage() const noexcept { return m_damageOnContact; }
 
-    void setDamage(float val) { damageOnContact = val; }
+    void setDamage(float val) { m_damageOnContact = val; }
 
-    char getMove() const noexcept { return aiMoveSequence[moveIndex]; }
+    char getMove() const noexcept { return m_aiMoveSequence[m_moveIndex]; }
 
-    void setMoveSequence(char *sequence) { aiMoveSequence = sequence; }
+    void setMoveSequence(char *sequence) { m_aiMoveSequence = sequence; }
 
-    void setPlayer(Player *player) { toChase = player; }
+    void setPlayer(Player *player) { m_toChase = player; }
 };
 
 

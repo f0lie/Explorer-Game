@@ -8,16 +8,16 @@
 class Entity
 {   //entities should be used for item pickups, rocks, player characters, enemies, etc.  Anything that isn't map but is visible.
 protected:
-    bool isSolid;
-    int xPosition;
-    int yPosition;
-    double direction;
-    sf::Sprite sprite;
-    sf::Texture tex;
+    bool m_isSolid;
+    int m_xPosition;
+    int m_yPosition;
+    double m_direction;
+    sf::Sprite m_sprite;
+    sf::Texture m_tex;
 public:
     Entity(bool isSolid, int x, int y, double dir, std::string fileName);
 
-    sf::Sprite getSprite() const noexcept { return sprite; }
+    sf::Sprite getSprite() const noexcept { return m_sprite; }
 
     virtual void attack() = 0;
 
@@ -35,21 +35,21 @@ public:
     void right();
 
     //Getters and setters.
-    bool getSolid() const noexcept { return isSolid; }
+    bool getSolid() const noexcept { return m_isSolid; }
 
-    void setSolid(bool val) { isSolid = val; }
+    void setSolid(bool val) { m_isSolid = val; }
 
-    int getX() const noexcept { return xPosition; }
+    int getX() const noexcept { return m_xPosition; }
 
-    void setX(int val) { xPosition = val; }
+    void setX(int val) { m_xPosition = val; }
 
-    int getY() const noexcept { return yPosition; }
+    int getY() const noexcept { return m_yPosition; }
 
-    void setY(int val) { yPosition = val; }
+    void setY(int val) { m_yPosition = val; }
 
-    double getDirection() const noexcept { return direction; }
+    double getDirection() const noexcept { return m_direction; }
 
-    void setDirection(float val) { direction = val; }
+    void setDirection(float val) { m_direction = val; }
 };
 
 #endif // ENTITY_H
