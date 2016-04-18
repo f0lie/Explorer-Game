@@ -12,6 +12,7 @@ class Entity
         int yPosition;
         double direction;
         sf::Sprite sprite;
+        sf::Texture tex;
     public:
         Entity(bool isSolid, int x, int y, double dir, std::string fileName);
 		sf::Sprite getSprite(){

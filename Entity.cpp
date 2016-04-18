@@ -5,7 +5,6 @@ Entity::Entity(bool isSolid, int x, int y, double dir, std::string fileName){
 	xPosition=x;
 	yPosition=y;
 	direction = dir;
-	sf::Texture tex;
 	if(!tex.loadFromFile("media/" + fileName))
 		std::cout<<"Failed to load texture "+fileName;
 	else
