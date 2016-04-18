@@ -3,6 +3,7 @@
 
 constexpr unsigned int winWidth{800}, winHeight{600};
 std::vector<Entity*> entitiesToRender;
+std::vector<Enemy*> AIsToMove;
 
 Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
                m_texmgr(),
@@ -19,8 +20,13 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
     m_background.setTexture(m_texmgr.getRef("background"));
 }
 void Game::loadStartingEntities(){
-	player =  new Entity(true, 1, 1, 0, "front.png"); //Just a test entity that uses the player front texture.
+	player =  new Player(true, 1, 1, 0, "front.png"); //Just a test entity that uses the player front texture.
+	enemy = new Enemy(true, 1, player, 700, 585, 0, "front_e.png");
+	char moves[6] = {'c','c','c','c','c','c'};
+	enemy->setMoveSequence(moves);
 	entitiesToRender.push_back(player);
+	entitiesToRender.push_back(enemy);
+	AIsToMove.push_back(enemy);
 }
 
 void Game::drawEntities(){
@@ -28,6 +34,11 @@ void Game::drawEntities(){
 		sf::Sprite sprite = e->getSprite();
 		sprite.setPosition(e->getX(), e->getY());
 		m_window.draw(sprite);
+	}
+}
+void Game::moveAIs(){
+	for(Enemy *e : AIsToMove){
+		e->move();
 	}
 }
 
@@ -53,6 +64,7 @@ void Game::run()
         peekState()->update(dt);
         m_window.clear(sf::Color::Black);
         peekState()->draw(dt);
+        moveAIs();
         drawEntities();
         m_window.display();
     }

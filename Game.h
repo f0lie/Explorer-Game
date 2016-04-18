@@ -13,6 +13,8 @@
 #include "TextureManager.h"
 #include "Tile.h"
 #include "Entity.h"
+#include "Player.h"
+#include "Enemy.h"
 
 class GameState;
 
@@ -23,7 +25,8 @@ public:
     sf::RenderWindow m_window;
     sf::Sprite m_background;
     TextureManager m_texmgr;
-    Entity *player; //Temporary player to test controls.
+    Player *player; //Temporary player to test controls.
+	Enemy *enemy; //Temporary enemy to test chasing.
 	
     const static int m_tileSize{8};
 
@@ -47,7 +50,7 @@ public:
     void changeState(std::unique_ptr<GameState> state);
 
     GameState *peekState();
-
+	void moveAIs();
     void run();
 
 private:

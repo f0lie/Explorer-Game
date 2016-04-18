@@ -18,6 +18,15 @@ class Entity
 		sf::Sprite getSprite(){
 			return sprite;
 		}
+		void stepForward();
+		void stepBackward();
+		void up();
+		void down();
+		void left();
+		void right();
+		
+		
+		//Getters and setters.
         bool getSolid() {
              return isSolid;
         }
@@ -36,43 +45,13 @@ class Entity
         void setY(int val) {
             yPosition = val;
         }
-        void stepForward();
-        void stepBackward();
-        void up(){
-			direction = 90; //Our coordinate grid starts at 0,0 in the top left corner.  Until someone changes it.
-			yPosition-=1;
-			if(false){//if there is a SOLID sprite in the same square.
-			stepBackward();
-			}
-			//check if any occupying sprites are solid
-		}
-		void down(){
-			direction = 270; //Our coordinate grid starts at 0,0 in the top left corner.  Until someone changes it.
-			yPosition+=1;
-			if(false){//if there is a SOLID sprite in the same square.
-			stepBackward();
-			}
-			//check if any occupying sprites are solid
-		}
-		void left(){
-			direction = 180; //Our coordinate grid starts at 0,0 in the top left corner.  Until someone changes it.
-			xPosition-=1;
-			if(false){//if there is a SOLID sprite in the same square.
-			stepBackward();
-			}
-			//check if any occupying sprites are solid
-		}
-		void right(){
-			direction = 0; //Our coordinate grid starts at 0,0 in the top left corner.  Until someone changes it.
-			xPosition+=1;
-			if(false){//if there is a SOLID sprite in the same square.
-			stepBackward();
-			}
-			//check if any occupying sprites are solid
-		}
-		void attack(){
-			//TODO implement attacking directionally in front based on weapon range.
-		}
+		void attack();
+		float Get_direction() {
+            return direction;
+        }
+        void Set_direction(float val) {
+            direction = val;
+        }
 };
 
 #endif // ENTITY_H

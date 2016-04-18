@@ -7,8 +7,6 @@ Entity::Entity(bool isSolid, int x, int y, double dir, std::string fileName){
 	direction = dir;
 	if(!tex.loadFromFile("media/" + fileName))
 		std::cout<<"Failed to load texture "+fileName;
-	else
-		std::cout<<"Loaded texture "+fileName;
 	sprite.setTexture(tex);
 }
 
@@ -34,6 +32,9 @@ void Entity::stepForward(){
    	else if(direction<=315)
        	yPosition++;
 }
+void Entity::attack(){
+	//Is overridden by Players and Enemies anyway
+}
 
 void Entity::stepBackward(){
         	int a=0;
@@ -56,4 +57,22 @@ void Entity::stepBackward(){
         		xPosition++;
         	else if(direction<=315)
         		yPosition--;
-        }
+}
+
+
+void Entity::up(){
+	direction = 90.0;
+	yPosition--;
+}
+void Entity::down(){
+	direction = 270.0;
+	yPosition++;
+}
+void Entity::left(){
+	direction = 180.0;
+	xPosition--;
+}
+void Entity::right(){
+	direction = 0.0;
+	xPosition++;
+}
