@@ -1,4 +1,4 @@
-#include "Enemy.h"
+#include "include/Enemy.h"
 
  Enemy::Enemy(bool isSolid, int damage, Player *player, int xPosition, int yPosition, double dir, std::string fileName)
  : Entity(isSolid, xPosition, yPosition, dir, fileName){

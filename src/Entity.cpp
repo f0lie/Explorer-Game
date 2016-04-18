@@ -1,4 +1,4 @@
-#include "Entity.h"
+#include "include/Entity.h"
 
 Entity::Entity(bool isSolid, int x, int y, double dir, std::string fileName){
 	isSolid=isSolid;

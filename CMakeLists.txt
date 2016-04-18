@@ -1,8 +1,6 @@
 #Change this if you need to target a specific CMake version
 cmake_minimum_required(VERSION 3.3)
 
-# Name of project
-project(legend_of_the_swamp)
 
 # Set cmake flags
 set(CMAKE_CXX_STANDARD 14)
@@ -14,6 +12,9 @@ if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
 endif ()
 # (you can also set it on the command line: -D CMAKE_BUILD_TYPE=Release)
+
+# Name of project
+project(legend_of_the_swamp)
 
 
 # Define sources and executable
@@ -43,8 +44,7 @@ endif ()
 
 
 # Install target
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR})
-install(TARGETS ${EXECUTABLE_NAME} DESTINATION ${PROJECT_SOURCE_DIR})
+install(TARGETS ${EXECUTABLE_NAME} DESTINATION bin)
 
 
 # CPack packaging
