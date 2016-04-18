@@ -5,7 +5,8 @@ Tile::Tile(unsigned int tileSize,
            sf::Texture &texture,
            const std::vector<Animation> &animations,
            TileType tileType) : m_tileType(tileType),
-                                m_tileVariant(0)
+                                m_tileVariant(0),
+                                m_regions{0}
 {
     m_sprite.setTexture(texture);
 
@@ -35,4 +36,20 @@ void Tile::draw(sf::RenderWindow &window, const float dt)
 void Tile::update()
 {
 
+}
+
+std::string tileTypeToStr(TileType type)
+{
+// TODO: Change the tiles to RPG ones
+    switch (type)
+    {
+        case TileType::GRASS:
+            return "Flatten";
+        case TileType::FOREST:
+            return "Forest";
+        case TileType::WATER:
+            return "Water";
+        default:
+            return "Void";
+    }
 }
