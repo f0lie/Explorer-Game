@@ -8,7 +8,7 @@
 
 enum class ActionState
 {
-    NONE, PANNING
+    NONE
 };
 
 class GameStateEditor : public GameState

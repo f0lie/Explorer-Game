@@ -85,54 +85,6 @@ void GameStateEditor::handleInput()
                         float(event.size.height) / float(m_game->m_background.getTexture()->getSize().y));
                 break;
             }
-            case sf::Event::MouseMoved:
-            {
-                // Pan the camera
-                if (m_actionState == ActionState::PANNING)
-                {
-                    sf::Vector2f pos = sf::Vector2f(sf::Mouse::getPosition(m_game->m_window) - m_panningAnchor);
-                    m_gameView.move(-1.0f * pos * m_zoomLevel);
-                    m_panningAnchor = sf::Mouse::getPosition(m_game->m_window);
-                }
-                break;
-            }
-            case sf::Event::MouseButtonPressed:
-            {
-                // Start panning
-                if (event.mouseButton.button == sf::Mouse::Middle)
-                {
-                    if (m_actionState == ActionState::PANNING)
-                    {
-                        m_actionState = ActionState::PANNING;
-                        m_panningAnchor = sf::Mouse::getPosition(m_game->m_window);
-                    }
-                }
-                break;
-            }
-            case sf::Event::MouseButtonReleased:
-            {
-                // Stop panning
-                if (event.mouseButton.button == sf::Mouse::Middle)
-                {
-                    m_actionState = ActionState::NONE;
-                }
-                break;
-            }
-            case sf::Event::MouseWheelMoved:
-            {
-                // TODO: Reduce the speed of zooming
-                if (event.mouseWheel.delta < 0)
-                {
-                    m_gameView.zoom(2.0f);
-                    m_zoomLevel *= 2.0f;
-                }
-                else
-                {
-                    m_gameView.zoom(0.5f);
-                    m_zoomLevel *= 0.5f;
-                }
-                break;
-            }
             default:
                 break;
         }
