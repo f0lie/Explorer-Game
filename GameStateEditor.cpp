@@ -3,7 +3,7 @@
 
 // TODO: Entire class is almost useless for RPG game. However methods here are useful for other things.
 GameStateEditor::GameStateEditor(Game *game) : GameState(game),
-                                               m_map("map.dat", 64, 64, game->m_tileAtlas),
+                                               m_map("map.csv", 64, 64, game->m_tileAtlas),
                                                m_guiView(),
                                                m_gameView(),
                                                m_zoomLevel(1.0f),

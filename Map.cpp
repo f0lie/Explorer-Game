@@ -3,24 +3,26 @@
 #include <fstream>
 
 #include "Map.h"
+#include "lib/csv.h"
 
 /* Load map from disk */
 // TODO: Change the binary format to a CSV/human readable format
 void Map::load(const std::string &filename, unsigned int width, unsigned int height,
                std::map<std::string, Tile> &tileAtlas)
 {
-    std::ifstream inputFile;
-    inputFile.open(filename, std::ios::in | std::ios::binary);
+    io::CSVReader<2> inputFile(filename);
+    inputFile.read_header(io::ignore_extra_column, "TileType", "TileVariant");
 
     m_width = width;
     m_height = height;
 
     for (unsigned int pos = 0; pos < m_width * m_height; pos++)
     {
-        TileType tileType;
-        inputFile.read((char *) &tileType, sizeof(int));
-        // TODO: Change to RPG types
-        switch (tileType)
+        unsigned int tileType;
+        unsigned int tileVariant;
+        inputFile.read_row(tileType, tileVariant);
+
+        switch (static_cast<TileType >(tileType))
         {
             case TileType::VOID:
             case TileType::GRASS:
@@ -32,26 +34,20 @@ void Map::load(const std::string &filename, unsigned int width, unsigned int hei
             case TileType::WATER:
                 m_tiles.push_back(tileAtlas.at("water"));
         }
-        Tile &tile = m_tiles.back();
-
-        inputFile.read((char *) &tile.m_tileVariant, sizeof(int));
-        inputFile.read((char *) &tile.m_regions, sizeof(int) * 1);
+        m_tiles.back().m_tileVariant = tileVariant;
     }
-
-    inputFile.close();
 }
 
 // TODO: Save in a human readable format
 void Map::save(const std::string &filename)
 {
-    std::ofstream outputFile;
-    outputFile.open(filename, std::ios::out | std::ios::binary);
+    std::ofstream outputFile(filename);
+
+    outputFile << "TileType, TileVariant" << std::endl;
 
     for (auto tile : m_tiles)
     {
-        outputFile.write((char *) &tile.m_tileType, sizeof(int));
-        outputFile.write((char *) &tile.m_tileVariant, sizeof(int));
-        outputFile.write((char *) &tile.m_regions, sizeof(int) * 1);
+        outputFile << int(tile.m_tileType) << "," << tile.m_tileVariant << std::endl;
     }
 
     outputFile.close();

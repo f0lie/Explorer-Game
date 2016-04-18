@@ -42,19 +42,12 @@ public:
     /* Draw the map */
     void draw(sf::RenderWindow &window, float dt);
 
-    /* Check if one position in the map is connected to another by traversing whitelist */
-    void findConnectedRegions(std::vector<TileType> whitelist, int type);
 
     /*
      * Update the direction of directional tiles to correct position
      * i.e roads, rivers, and etc
      */
     void updateDirection(TileType tileType);
-
-private:
-    void depthFirstSearch(std::vector<TileType> &whitelist,
-                          sf::Vector2i pos, int label, int type);
-
 };
 
 
