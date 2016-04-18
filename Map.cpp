@@ -6,7 +6,6 @@
 #include "lib/EasyBMP/EasyBMP.h"
 
 /* Load map from disk */
-// TODO: Change the binary format to a CSV/human readable format
 void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtlas)
 {
     BMP map_file;
@@ -15,11 +14,11 @@ void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtl
     m_height = unsigned(map_file.TellHeight());
     m_width = unsigned(map_file.TellWidth());
 
-    for(int y = 0; y < m_height; y++)
+    for (int y = 0; y < m_height; y++)
     {
         for (int x = 0; x < m_width; x++)
         {
-            switch(pixelToTileType(map_file(x,y)->Red, map_file(x,y)->Green, map_file(x,y)->Blue))
+            switch (pixelToTileType(map_file(x, y)->Red, map_file(x, y)->Green, map_file(x, y)->Blue))
             {
                 case TileType::VOID:
                 case TileType::GRASS:
@@ -37,7 +36,6 @@ void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtl
     }
 }
 
-// TODO: Save in a human readable format
 void Map::save(const std::string &filename)
 {
     std::ofstream outputFile(filename);
