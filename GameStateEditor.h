@@ -11,7 +11,6 @@ enum class ActionState
     NONE, PANNING
 };
 
-//TODO: Reduce this class because you don't need to edit the world in a RPG. We can still use some of it.
 class GameStateEditor : public GameState
 {
 public:
@@ -35,10 +34,6 @@ private:
 
     sf::Vector2i m_panningAnchor;
     float m_zoomLevel;
-
-    // TODO: Remove selection
-    sf::Vector2i m_selectionStart;
-    sf::Vector2i m_selectionEnd;
 
     Tile *m_currentTile;
 };

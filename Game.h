@@ -23,7 +23,6 @@ public:
 
     const static int m_tileSize{8};
 
-    //TODO: type alias for tileAtlas
     std::map<std::string, Tile> m_tileAtlas;
     std::map<std::string, GuiStyle> m_stylesheets;
     std::map<std::string, sf::Font> m_fonts;
