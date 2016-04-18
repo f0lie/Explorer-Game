@@ -36,7 +36,7 @@ public:
 
 
     //Getters and setters
-    float getDirection()
+    double getDirection()
     {
         return direction;
     }
