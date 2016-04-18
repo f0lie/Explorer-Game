@@ -6,13 +6,11 @@
 
 #include "AnimationHandler.h"
 
-//TODO: changes the types to the correct game
+//TODO: Expand on the type of tiles like roads
 enum class TileType
 {
     VOID, GRASS, FOREST, WATER,
 };
-
-std::string tileTypeToStr(TileType type);
 
 constexpr TileType pixelToTileType(unsigned char red, unsigned char green, unsigned char blue)
 {
@@ -32,9 +30,6 @@ public:
 
     // Tile variant, allow for different looking versions of the same tile
     unsigned int m_tileVariant;
-
-    //TODO: remove these variables for the correct game type
-    unsigned int m_regions[1];
 
     Tile() = default;
 
