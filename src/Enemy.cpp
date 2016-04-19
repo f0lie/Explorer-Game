@@ -109,8 +109,7 @@ void Enemy::move()
     }
     m_moveIndex++;
     if (m_moveIndex >= m_aiMoveSequence.size())
-    {//TODO  find out why the enemy won't chase us.
+    {
         m_moveIndex = 0;
     }
-    std::cout<<m_direction<<" "; //FOR DEBUGGING
 }

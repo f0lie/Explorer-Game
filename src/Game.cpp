@@ -14,7 +14,6 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
     loadTiles();
     loadFonts();
     loadStylesheets();
-    loadStartingEntities();
 
     m_window.setFramerateLimit(60);
 

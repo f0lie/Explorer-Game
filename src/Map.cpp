@@ -13,7 +13,7 @@ void Map::load(const std::string &filename, std::map<std::string, Tile> &tileAtl
 
     m_height = unsigned(map_file.TellHeight());
     m_width = unsigned(map_file.TellWidth());
-
+	
     for (unsigned int y = 0; y < m_height; y++)
     {
         for (unsigned int x = 0; x < m_width; x++)
