@@ -68,7 +68,6 @@ void Enemy::move()
     char curr = m_aiMoveSequence.at(m_moveIndex);
     switch (curr)
     {
-        {
             case 'A':
                 case 'a':
                     attack();
@@ -95,7 +94,7 @@ void Enemy::move()
             break;
             case 'R':
                 case 'r':
-                    m_direction = 0;
+                    m_direction = 360;
             m_xPosition += 1;
             break;
             default:
@@ -105,8 +104,8 @@ void Enemy::move()
             {//if there is a SOLID m_sprite or SOLID map tile in the same square.
                 stepBackward();
             }
-        }
     }
+    adjustSprite();
     m_moveIndex++;
     if (m_moveIndex >= m_aiMoveSequence.size())
     {

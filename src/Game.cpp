@@ -24,18 +24,33 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
 void Game::loadStartingEntities()
 {
     m_player = new Player(true, 100, 300, 0, "front.png"); //Just a test entity that uses the player front texture, but with the HIGHEST SIZE WE NEED.
-    Enemy *m_enemy = new Enemy(true, 1, m_player, 500, 185, 0.0, "front_e.png");
+    Enemy *m_enemy = new Enemy(true, 1, m_player, 220, 285, 0.0, "front_e.png");
+    Enemy *m_enemy_2 = new Enemy(true, 1, m_player, 467, 41, 0.0, "front_e.png");
     Sword *m_sword = new Sword(true, m_player, 300, 215, 0.0, "sword.png");
     Bow *m_bow = new Bow(true, m_player, 200, 215, 0.0, "bow.png");
     std::vector<char> moves;
     moves.push_back('c');
+    std::vector<char> moves_2;
+    for(int i=0; i<100; i++)
+		moves_2.push_back('c');
+    for(int i=0; i<25; i++)
+		moves_2.push_back('u');
+	for(int i=0; i<25; i++)
+		moves_2.push_back('r');
+	for(int i=0; i<25; i++)
+		moves_2.push_back('d');
+	for(int i=0; i<25; i++)
+		moves_2.push_back('l');
     m_enemy->setMoveSequence(moves);
+    m_enemy_2->setMoveSequence(moves_2);
     entitiesToRender.push_back(m_player);
     entitiesToRender.push_back(m_enemy);
+    entitiesToRender.push_back(m_enemy_2);
     entitiesToRender.push_back(m_sword);
     entitiesToRender.push_back(m_bow);
     
     AIsToMove.push_back(m_enemy);
+    AIsToMove.push_back(m_enemy_2);
     
     pickups.push_back(m_sword);
     pickups.push_back(m_bow);
