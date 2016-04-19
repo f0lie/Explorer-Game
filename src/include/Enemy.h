@@ -14,7 +14,7 @@ class Enemy : public Entity
 protected:
     float m_damageOnContact;
     std::vector<char> m_aiMoveSequence;
-    int m_moveIndex; //index of AI move sequence.
+    unsigned int m_moveIndex; //index of AI move sequence.
     Player *m_toChase;
 public:
     Enemy(bool isSolid,
