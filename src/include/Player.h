@@ -8,7 +8,6 @@ class Player : public Entity
 {
 public:
     Player(bool isSolid, int xPosition, int yPosition, double dir, std::string fileName);
-
     void attack();
 
     void adjustSprite();
@@ -54,6 +53,11 @@ public:
     {
         weaponRange = r;
     }
+    void heal(int h){
+		m_health+=h;
+	}
+	int xOffset(){return 5;}
+	int yOffset(){return 10;}
 
 protected:
     int floor;

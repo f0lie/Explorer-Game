@@ -89,5 +89,6 @@ void GameStateStart::handleInput()
 
 void GameStateStart::loadGame()
 {
+	m_game->loadStartingEntities();
     m_game->pushState(std::make_unique<GameStateEditor>(m_game));
 }

@@ -33,7 +33,8 @@ public:
     virtual void adjustSprite() = 0;
 
     virtual void attack() = 0;
-
+    virtual int xOffset() = 0;
+	virtual int yOffset() = 0;
     void fixDirection();
 
     void keepOnGrid();
@@ -83,6 +84,8 @@ public:
     {
         m_direction = val;
     }
+    void setHealth(int h){m_health =h;}
+    int getHealth(){return m_health;}
 };
 
 #endif // ENTITY_H

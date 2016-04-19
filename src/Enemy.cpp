@@ -10,17 +10,23 @@ Enemy::Enemy(bool isSolid, int damage, Player *player, int xPosition, int yPosit
 
 double Enemy::toPlayer()
 {//degrees
-    //if y is negative and x isn't +270, both neg add 180, y pos x neg add 90.
     double x = m_toChase->getX() - m_xPosition;
     double y = m_yPosition - m_toChase->getY();
-    double r = sqrt(x * x + y * y);
-    double theta = acos(x / r) * 180.0 / PI;
-    if (y >= 0 && x < 0) //Uh yeah someone check my work on this logic LOL
-        theta += 90.0;
-    if (y < 0 && x < 0)
-        theta += 180.0;
-    if (y < 0 && x >= 0)
-        theta += 270.0;
+    if(x==0){
+		if(y<0)
+			return 270.0;
+		else
+			return 90.0;
+	}
+	double theta = atan2(y,x)/3.14159265*180.0;
+	if(y<0){
+		theta = 90.0-theta;
+		if(x>0)
+			theta = 90.0-theta;
+	}
+	while(theta<=0.0)
+		theta+=360.0;
+    return theta;
 }
 
 void Enemy::attack()
@@ -59,7 +65,7 @@ void Enemy::adjustSprite()
 
 void Enemy::move()
 {
-    char curr = m_aiMoveSequence[m_moveIndex];
+    char curr = m_aiMoveSequence.at(m_moveIndex);
     switch (curr)
     {
         {
@@ -69,7 +75,7 @@ void Enemy::move()
             break;
             case 'C':
                 case 'c':
-                    Set_direction(toPlayer());
+					m_direction = toPlayer();
             stepForward();
             break;
             case 'U':
@@ -96,15 +102,14 @@ void Enemy::move()
                 break;
             //TODO collision!
             if (false)
-            {//if there is a SOLID m_sprite in the same square.
+            {//if there is a SOLID m_sprite or SOLID map tile in the same square.
                 stepBackward();
             }
         }
     }
     m_moveIndex++;
-    if (m_moveIndex >= strlen(m_aiMoveSequence))
-    {//TODO find out why it always goes to 5.
+    if (m_moveIndex >= m_aiMoveSequence.size())
+    {
         m_moveIndex = 0;
     }
-    //std::cout<<m_moveIndex<<" "; //FOR DEBUGGING
 }

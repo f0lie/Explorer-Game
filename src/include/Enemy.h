@@ -13,8 +13,8 @@ class Enemy : public Entity
 {
 protected:
     float m_damageOnContact;
-    char *m_aiMoveSequence;
-    int m_moveIndex; //index of AI move sequence.
+    std::vector<char> m_aiMoveSequence;
+    unsigned int m_moveIndex; //index of AI move sequence.
     Player *m_toChase;
 public:
     Enemy(bool isSolid,
@@ -27,7 +27,8 @@ public:
 
 
     double toPlayer();
-
+	int xOffset(){return 4;}
+	int yOffset(){return 8;}
     void attack();
 
     void move();
@@ -61,9 +62,9 @@ public:
         return m_aiMoveSequence[m_moveIndex];
     }
 
-    void setMoveSequence(char *sequence)
+    void setMoveSequence(std::vector<char> s)
     {
-        m_aiMoveSequence = sequence;
+        m_aiMoveSequence = s;
     }
 
     void setPlayer(Player *player)
