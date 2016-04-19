@@ -23,7 +23,7 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
 
 void Game::loadStartingEntities()
 {
-    m_player = new Player(true, 100, 100, 0, "front.png"); //Just a test entity that uses the m_player front texture.
+    m_player = new Player(true, 100, 100, 0, "init.png"); //Just a test entity that uses the player front texture, but with the HIGHEST SIZE WE NEED.
     Enemy *m_enemy = new Enemy(true, 1, m_player, 600, 485, 0.0, "front_e.png");
     Sword *m_sword = new Sword(true, m_player, 300, 215, 0.0, "sword.png");
     Bow *m_bow = new Bow(true, m_player, 200, 215, 0.0, "bow.png");
