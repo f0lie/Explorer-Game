@@ -12,7 +12,7 @@ double Pickup::distanceToPlayer(){
 		return sqrt(x*x + y*y);
 	}
 void Pickup::checkPickup(){
-		if(distanceToPlayer() < 25){
+		if(distanceToPlayer() < 20){
 			m_health =0;
 			pickUp();
 		}
