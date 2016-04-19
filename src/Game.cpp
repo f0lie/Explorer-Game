@@ -48,8 +48,15 @@ void Game::drawEntities()
 			entitiesToRender.erase(std::remove(entitiesToRender.begin(), entitiesToRender.end(), e), entitiesToRender.end()); //Shitty line of code that removes e from the vector.
         else{
         sf::Sprite sprite = e->getSprite();
-        sprite.setPosition(e->getX() + 3,
-                           e->getY() + 9); //the +3 and +9 are so they're drawn in a more central location.
+        sprite.setPosition(e->getX(), e->getY());
+        if(e->getType() == PLAYER || e->getType() == ENEMY)
+        	sprite.setScale(2.0,2.0); //We want to display these double size.
+        if(e->getType() == PLAYER)
+        	sprite.setPosition(e->getX() + 10, e->getY() + 20); //Player sprites are 10x20.
+        if(e->getType() == ENEMY)
+        	sprite.setPosition(e->getX() + 8, e->getY() + 12); //Enemy sprites are 8x12.
+       	if(e->getType() == PICKUP)
+        	sprite.setPosition(e->getX() + 8, e->getY() + 8); //Pickup sprites are 16 by ~=16.
         m_window.draw(sprite);
 		}
     }
