@@ -6,6 +6,7 @@ std::vector<Entity *> entitiesToRender;
 std::vector<Enemy *> AIsToMove;
 std::vector<Pickup *> pickups;
 
+
 Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
                m_texmgr(),
                m_background()
@@ -14,7 +15,7 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
     loadTiles();
     loadFonts();
     loadStylesheets();
-
+	playerExists = false; //This bool needed to prevent segfaults on WASD entry on load screen.
     m_window.setFramerateLimit(60);
 
     m_background.setTexture(m_texmgr.getRef("background"));
@@ -38,6 +39,7 @@ void Game::loadStartingEntities()
     
     pickups.push_back(m_sword);
     pickups.push_back(m_bow);
+    playerExists = true;
 }
 
 void Game::drawEntities()
@@ -84,7 +86,8 @@ void Game::run()
 
     while (m_window.isOpen())
     {
-        takeInput();
+		if(playerExists)
+			takeInput();
         sf::Time elapsed{clock.restart()};
         float dt{elapsed.asSeconds()};
 
