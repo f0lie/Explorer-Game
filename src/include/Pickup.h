@@ -22,12 +22,13 @@ public:
           int yPosition,
           double dir,
           std::string fileName);    // Call the superclass constructor in the subclass' initialization list 
-
     double toPlayer();
 	void checkPickup();
 	virtual void pickUp() = 0;
 	double distanceToPlayer();
 	void adjustSprite();
+	int xOffset(){return 8;}
+	int yOffset(){return 8;}
 
 
     //Getters and setters
