@@ -32,7 +32,7 @@ void Entity::stepForward()
         m_yPosition--;
     else if (m_direction <= 225)
         m_xPosition--;
-    else if (m_direction <= 315)
+    else
         m_yPosition++;
     adjustSprite();
 }

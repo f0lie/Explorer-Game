@@ -23,11 +23,12 @@ Game::Game() : m_window({winWidth, winHeight}, "Legend of the Swamp"),
 
 void Game::loadStartingEntities()
 {
-    m_player = new Player(true, 100, 100, 0, "front.png"); //Just a test entity that uses the player front texture, but with the HIGHEST SIZE WE NEED.
-    Enemy *m_enemy = new Enemy(true, 1, m_player, 600, 485, 0.0, "front_e.png");
+    m_player = new Player(true, 100, 300, 0, "front.png"); //Just a test entity that uses the player front texture, but with the HIGHEST SIZE WE NEED.
+    Enemy *m_enemy = new Enemy(true, 1, m_player, 500, 185, 0.0, "front_e.png");
     Sword *m_sword = new Sword(true, m_player, 300, 215, 0.0, "sword.png");
     Bow *m_bow = new Bow(true, m_player, 200, 215, 0.0, "bow.png");
-    char moves[2] = {'c', 'c'};
+    std::vector<char> moves;
+    moves.push_back('c');
     m_enemy->setMoveSequence(moves);
     entitiesToRender.push_back(m_player);
     entitiesToRender.push_back(m_enemy);
@@ -48,15 +49,7 @@ void Game::drawEntities()
 			entitiesToRender.erase(std::remove(entitiesToRender.begin(), entitiesToRender.end(), e), entitiesToRender.end()); //Shitty line of code that removes e from the vector.
         else{
         sf::Sprite sprite = e->getSprite();
-        sprite.setPosition(e->getX(), e->getY());
-        if(e->getType() == PLAYER || e->getType() == ENEMY)
-        	sprite.setScale(2.0,2.0); //We want to display these double size.
-        if(e->getType() == PLAYER)
-        	sprite.setPosition(e->getX() + 10, e->getY() + 20); //Player sprites are 10x20.
-        if(e->getType() == ENEMY)
-        	sprite.setPosition(e->getX() + 8, e->getY() + 12); //Enemy sprites are 8x12.
-       	if(e->getType() == PICKUP)
-        	sprite.setPosition(e->getX() + 8, e->getY() + 8); //Pickup sprites are 16 by ~=16.
+        	sprite.setPosition(e->getX() + e->xOffset(), e->getY() + e->yOffset());
         m_window.draw(sprite);
 		}
     }
