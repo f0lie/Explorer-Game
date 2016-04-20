@@ -30,6 +30,7 @@ public:
     sf::Sprite m_background;
     TextureManager m_texmgr;
     Player *m_player; //Temporary player to test controls.
+    bool playerExists;
 
     const static int m_tileSize{8};
 
