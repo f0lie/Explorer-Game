@@ -1,4 +1,4 @@
-# Legend_of_the_Swamp
+# Explorer Game
 A UF group project that attempts to create a limited Legend of Zelda clone.
 
 ## Tools we will be using
