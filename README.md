@@ -3,13 +3,13 @@ A UF group project that attempts to create a limited Legend of Zelda clone.
 
 ## Tools we will be using
 [Slack](legendoftheswamp.slack.com)
-  * This is so we can communicate. Group texting is pretty ghetto and someone's phone could be wiped.
+  * This is so we can communicate.
 
 [SFML](http://www.sfml-dev.org/documentation/2.3.2/)
   * This is so we can interact with the computer. Its also cross platform so you don't have to install Linux.
 
 Git
-  * This is so we can track changes and merge our code togethe.rC
+  * This is so we can track changes and merge our code togethe.
 
 Any IDE
   * With the proper setup, it shouldn't matter what IDE you are using or even what OS.
@@ -27,11 +27,11 @@ The code will break very often and thats fine IF YOU **FIX** IT. Do not leave th
 
 When you submit your code to this main repo, I will review your code. I will mainly be follow standard practices of C++. For more specific examples go to the .pdf I linked below. No one will remember all of them and neither will I. Just keep write and slowly improve your code.
 
-Please have some form of documentation with your code. Code without saying what it actually does is completely useless and dangerous code. Tests aka things to make sure its actually does what it says is nice.
+Please have some form of documentation with your code.
 
 Do one thing at time. If you are working on physics, focus on writing physics. If you need to display modules to work with, ask the dude that is working with display, pull his/her code and work from that.
 
-The build system will be Cmake because ~~its what my ide came with~~ it is cross platform and works with all major IDEs including Visual Studio.
+The build system will be Cmake because it is cross platform and works with all major IDEs including Visual Studio.
 
 ## Resources for the group
 Hopefully these links will help you on the project.
@@ -57,7 +57,7 @@ Most of the time its going to be something like this:
 [linky-poo](https://www.youtube.com/watch?v=TC9zhufV_Z8)
 It's a presentation at CppCon (a conference where the ~~nerdest~~ coolest people go to). The guy walks through using SFML to develop a simple game.
 
-##### ~~Sacrifice your newborn~~ Read modern C++11/14 standards
+##### Read modern C++11/14 standards
 If you want an example of modern C++ look at my repo magic_sqaure.
 
 [C++ FAQ](https://isocpp.org/wiki/faq)
@@ -66,7 +66,7 @@ If you want an example of modern C++ look at my repo magic_sqaure.
 
 [Bjarne Stroustrup on Writing Good Code](https://www.youtube.com/watch?v=1OEu9C51K2A)
 
-* Some random Danish dude talks about coding good code.
+* Creator of C++ talks about good code here.
 
 [CppCoreGuidelines](https://github.com/isocpp/CppCoreGuidelines/blob/master/CppCoreGuidelines.md)
 
@@ -78,7 +78,7 @@ Effective C++ and Modern Effective C++
 
 [C++ Code Standard for things that go vroom vroom](http://stroustrup.com/JSF-AV-rules.pdf)
 
-* The random Danish dude writes some guidelines on writing good C++. It actually explains why you do certain things. Use this as a jumping point to research more points about C++.
+* Actually explains why you do certain things. Use this as a jumping point to research more points about C++.
 
 ##### Learn SFML and look at other games.
 This is honestly not the most important thing. SFML is stands for Simple Fast Multimedia Library. It is a way to interact with your keyboard, audio, and display things. While signifact, it WILL NOT guide the design of our game.
