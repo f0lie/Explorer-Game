@@ -15,15 +15,13 @@ Any IDE
   * With the proper setup, it shouldn't matter what IDE you are using or even what OS.
 
 [Cmake](https://en.wikipedia.org/wiki/CMake)
-  * Build generator system. You run it and it makes the correct build files for your system. It basically makes compiling not painful/impossible.
+  * Build generator system. You run it and it makes the correct build files for your system.
 
 [Google Test](https://github.com/google/googletest/blob/master/googletest/docs/Primer.md)
  * It is extremely important to have tests to verify the project.
 
 ## Expectations
 We should meet very often. Code with a very collabration based project and we need to communicate in person to effectively work.
-
-The code will break very often and thats fine IF YOU **FIX** IT. Do not leave things broken.
 
 When you submit your code to this main repo, I will review your code. I will mainly be follow standard practices of C++. For more specific examples go to the .pdf I linked below. No one will remember all of them and neither will I. Just keep write and slowly improve your code.
 
@@ -51,7 +49,7 @@ Most of the time its going to be something like this:
   5. git pull upstream master *// upstream is the main repo that I control. You are making sure that you are up to date with the main repo.*
   6. deal with merge conflicts *// you pulled changes from the main remote that may progressed ahead of you. So it may conflict with your code. No problem, git helps you deal with them.*
   7. git push origin master *// origin is basically the url to a remote repo. You are uploading code to github*
-  8. Make a pull request on github *// politely ask for me to take your changes and add them to the main repo. I will review your code and likely yell at you*
+  8. Make a pull request on github *// politely ask for me to take your changes and add them to the main repo. I will review your code.
 
 ##### Watch this video
 [Using modern C++ to make games.](https://www.youtube.com/watch?v=TC9zhufV_Z8)
