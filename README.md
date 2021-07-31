@@ -54,8 +54,8 @@ Most of the time its going to be something like this:
   8. Make a pull request on github *// politely ask for me to take your changes and add them to the main repo. I will review your code and likely yell at you*
 
 ##### Watch this video
-[linky-poo](https://www.youtube.com/watch?v=TC9zhufV_Z8)
-It's a presentation at CppCon (a conference where the ~~nerdest~~ coolest people go to). The guy walks through using SFML to develop a simple game.
+[Using modern C++ to make games.](https://www.youtube.com/watch?v=TC9zhufV_Z8)
+It's a presentation at CppCon (a conference where the coolest people go to). The guy walks through using SFML to develop a simple game.
 
 ##### Read modern C++11/14 standards
 If you want an example of modern C++ look at my repo magic_sqaure.
